@@ -1,0 +1,106 @@
+/* .tableStartPage {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0.5em;
+    margin: 1em;
+} */
+
+/* .tableRow {
+    display: flex;
+    box-shadow: 0px 1px 7px 2px #aaa;
+    border-radius: 5px;
+    padding: 0.5em;
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+} */
+
+/* .tableRow td {
+    padding: 0.5em;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+} */
+
+/* .tableHead th {
+    padding: 0.5em;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+} */
+
+/* .searchField {
+    width: 97%;
+    border: 2px solid #aaa;
+    padding: 1em;
+    border-radius: 10px;
+} */
+
+.startPage {
+    display: block;
+    /* flex-direction: column; */
+    /* justify-content: center; */
+    width: 100%;
+}
+
+.searchField {
+    font-size: 1.4rem;
+    line-height: 1.4;
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    padding: 0.6rem;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 1.4rem auto;
+    resize: none;
+    text-align: center;
+}
+
+.searchField:focus {
+    box-shadow: 0 0 7px 2px #0091ea;
+}
+
+.searchField::selection {
+    box-shadow: 0 0 7px 2px #0091ea;
+}
+
+/* th {
+    text-align: left;
+    background-color: #ddd;
+} */
+
+/* thead {
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+} */
+
+.tableStartPage th,
+.tableStartPage td {
+    white-space: nowrap;
+    padding: 0.8rem 1.6rem;
+    overflow-x: auto;
+}
+
+.tableStartPage tr:nth-of-type(2n) {
+    background-color: #ddd;
+}
+
+.tableStartPage {
+    width: 100%;
+    /* display: inline; */
+    /* margin: 0 auto; */
+    box-sizing: border-box;
+    border-collapse: collapse;
+    margin-bottom: 1.4rem;
+    box-shadow: 0 3px 5px 0 #999;
+    border-radius: 0.5rem;
+    
+}
+
+.linkDiv {
+    border: 1px solid black;
+    padding: 0.5em;
+    text-decoration: none;
+    color: #fff;
+    background-color: #004369;
+}
+

@@ -1,0 +1,123 @@
+.table {
+    box-sizing: border-box;
+    border-collapse: collapse;
+    margin-bottom: 1.4rem;
+    box-shadow: 0px 3px 5px 0px #999;
+    border-radius: 0.5rem;
+}
+
+.table th {
+    text-align: left;
+}
+
+.table td {
+    border-top: 1px solid #ccc;
+}
+
+.table th,
+.table td {
+    white-space: nowrap;
+    padding: 0.8rem 1.6rem;
+}
+
+.table.right {
+    text-align: right;
+}
+
+.tableNoBox {
+    box-sizing: border-box;
+    border-collapse: collapse;
+    margin-bottom: 1.4rem;
+}
+
+.tableNoBox th {
+    text-align: left;
+}
+
+.tableNoBox td {
+    border-top: 1px solid #ccc;
+}
+
+.tableNoBox th,
+td {
+    white-space: nowrap;
+    padding: 0.8rem 1.6rem;
+}
+
+.tableNoBox.right {
+    text-align: right;
+}
+
+.table-scroll {
+    width: 100%;
+    display: block;
+    overflow-x: auto;
+}
+
+tr:nth-of-type(2n) {
+    background-color: #ddd;
+}
+
+.full-width-table {
+    width: 100%;
+    margin-bottom: 5.5rem;
+}
+
+
+
+@media only screen and (max-width: 668px) {
+    .table-stacked {
+        display: block;
+    }
+
+    .table-stacked tr {
+        display: block;
+    }
+
+    /* // We do not use display: none; for accessibility reasons */
+    .table-stacked thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    /* // För att inte tabellen ska kollapsa */
+    .table-stacked tbody {
+        display: block;
+    }
+
+    .table-stacked td {
+        display: block;
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%;
+        white-space: normal;
+        text-align:right;
+    }
+    td:nth-of-type(1):before { content: "Rad"; }
+    td:nth-of-type(2):before { content: "Namn"; }
+    td:nth-of-type(3):before { content: "Ställ"; }
+    td:nth-of-type(4):before { content: "Från fält"; }
+    td:nth-of-type(5):before { content: "Från position"; }
+    td:nth-of-type(6):before { content: "Från uttag"; }
+    td:nth-of-type(7):before { content: ""; }
+    td:nth-of-type(8):before { content: "Till fält"; }
+    td:nth-of-type(9):before { content: "Till position"; }
+    td:nth-of-type(10):before { content: "Till uttag"; }
+    td:nth-of-type(11):before { content: "Kommentar"; }
+
+    td:before {
+        /* För att visa tabell rubrik */
+        /* content: attr(data-title); */
+        /* Använder top och left för efterlikna padding */
+        position: absolute;
+        left: 1rem;
+        width: 45%;
+        padding-right: 0.55rem;
+        white-space: nowrap;
+        text-align:left;
+        font-weight: bold;
+        /* // top: 0.33rem; */
+    }
+}

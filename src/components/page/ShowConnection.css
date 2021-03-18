@@ -1,0 +1,9 @@
+.headerData {
+    display: table-row;
+    margin: 0 auto;
+}
+.headerData p {
+    display: inline-block;
+    width: 30%;
+    margin: 0.5em;
+}

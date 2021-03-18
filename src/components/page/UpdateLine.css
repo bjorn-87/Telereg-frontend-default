@@ -1,0 +1,26 @@
+/* .table input[type=number],
+.table input[type=text] {
+    width: 80%;
+    padding: 0.3rem 0.6rem;
+}
+
+th {
+    text-align: left;
+    background-color: #ddd;
+}
+
+.table th,
+.table td {
+    white-space: nowrap;
+    padding: 0.8rem 0.6rem;
+}
+
+.table {
+    display: block;
+    margin: 0;
+    box-sizing: border-box;
+    border-collapse: collapse;
+    margin-bottom: 1.4rem;
+    overflow-x: auto;
+} */
+
