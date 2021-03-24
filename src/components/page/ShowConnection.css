@@ -1,12 +1,20 @@
-.headerData {
+/* .headerData {
     display: table-row;
     margin: 0 auto;
-}
+} */
 
-.headerData p {
+.headerData {
+    margin: 0.5em;
+} 
+
+
+.headerBlock {
     display: inline-block;
     width: 30%;
-    /* margin: 0.5em; */
+}
+
+.headerBlock p {
+    overflow-wrap: break-word;
 }
 
 .connectionNavBar {
@@ -15,7 +23,7 @@
     /* margin: 0.5em; */
     padding: 0.5em;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     /* position: fixed; */
     /* top: 0; */
     /* width: 100%; */
