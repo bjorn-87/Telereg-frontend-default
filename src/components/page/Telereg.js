@@ -11,13 +11,14 @@ class Telereg extends Component {
         this.getContent = this.getContent.bind(this);
         this.changeHandler = this.changeHandler.bind(this);
         this.submitHandler = this.submitHandler.bind(this);
+        this.clickHandler = this.clickHandler.bind(this);
 
         this.state = {
             data: {},
             error: "",
             isloaded: false,
             search: ""
-        }
+        };
     }
 
     componentDidMount() {
@@ -33,26 +34,36 @@ class Telereg extends Component {
         })
             .then((response) => response.json())
             .then((res) => {
-            if (res.data) {
-                // console.log(res.data);
-                this.setState({
-                    data: res.data,
-                    isloaded: true
-                });
-            } else {
-                this.setState({error: res});
-            }
-        });
+                if (res.data) {
+                    this.setState({
+                        data: res.data,
+                        isloaded: true
+                    });
+                } else {
+                    this.setState({error: res});
+                }
+            });
     }
 
     submitHandler(event) {
-        // console.log(this.state.search);
         let url = "";
+
         if (this.state.search) {
-            url = `${this.baseUrl}search?search=${this.state.search}`
+            url = `${this.baseUrl}search?search=${this.state.search}`;
         } else {
             url = `${this.baseUrl}all`;
         }
+        this.getContent(url);
+        event.preventDefault();
+    }
+
+    clickHandler(event) {
+        let url = `${this.baseUrl}all`;
+
+        this.setState({
+            search: ""
+        });
+
         this.getContent(url);
         event.preventDefault();
     }
@@ -67,54 +78,90 @@ class Telereg extends Component {
         });
     }
 
-    render () {
+    render() {
         const {data, isloaded} = this.state;
-        // console.log(data);
+
         if (!isloaded) {
-            return <div>Loading data...</div>
+            return <div>Loading data...</div>;
         } else {
-            return ( 
-                <div className="startPage">
-                    <form onSubmit={this.submitHandler}>
-                        <input
-                        id="text"
-                        className="searchField"
-                        type="text"
-                        name="search"
-                        placeholder="Sök Nummer/namn"
-                        value={this.state.search}
-                        onChange={this.changeHandler}
-                        />
-                    </form>
-                    <table className="tableStartPage">
-                        <thead className="tableHead">
-                            <tr className="trHeader">
-                                <th>Nummer</th>
-                                <th>Namn</th>
-                                <th>Funktion</th>
-                                <th>Adress</th>
-                                <th>Skapad</th>
-                                <th>Uppdaterad</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {data ? data.map(element => (
-                            <tr key={element.Id} className="tableRow">
-                                <td><Link to={`/connection/${encodeURIComponent(element.Id)}`} className="linkDiv">{element.Number}</Link></td>
-                                <td>{element.Name}</td>
-                                <td>{element.Func}</td>
-                                <td>{element.Address}</td>
-                                <td><DateFormatter input={element.Created} type={"created"} /></td>
-                                <td><DateFormatter input={element.Updated} type={"updated"} /></td>
-                            </tr>
-                            
-                            )) : null}
-                        </tbody>
-                    </table>
-                </div>
+            return (
+                <main className="mainPage">
+                    <div className="startPage">
+                        <div className="searchBox">
+                            <form onSubmit={this.submitHandler}>
+                                <input
+                                    id="text"
+                                    className="searchField"
+                                    type="text"
+                                    name="search"
+                                    placeholder="Sök Nummer/namn"
+                                    value={this.state.search}
+                                    onChange={this.changeHandler}
+                                />
+                                <input type="submit" className="searchFieldSubmit" value="Sök"/>
+                            </form>
+                        </div>
+                        <div className="startPage">
+                            {data.length > 0 ? data.map(element => (
+                                <Link
+                                    key={element.Id}
+                                    to={`/connection/${encodeURIComponent(element.Id)}`}
+                                    className="linkDiv"
+                                >
+                                    <div className="rowDiv">
+                                        <div className="columnDiv">
+                                            <h5>Nummer</h5>
+                                            <p>{element.Number}</p>
+                                        </div>
+                                        <div className="columnDiv">
+                                            <h5>Namn</h5>
+                                            <p>{element.Name ? element.Name : "n/a"}</p>
+                                        </div>
+                                        <div className="columnDiv">
+                                            <h5>Funktion</h5>
+                                            <p>{element.Func ? element.Func : "n/a"}</p>
+                                        </div>
+                                        <div className="columnDiv">
+                                            <h5>Adress</h5>
+                                            <p>{element.Address ? element.Address : "n/a"}</p>
+                                        </div>
+                                        <div className="columnDiv">
+                                            <h5>Skapad</h5>
+                                            <p>
+                                                <DateFormatter input={element.Created}
+                                                    type={"created"}
+                                                />
+                                            </p>
+                                        </div>
+                                        <div className="columnDiv">
+                                            <h5>Uppdaterad</h5>
+                                            <p>
+                                                {element.Updated ?
+                                                    <DateFormatter input={element.Updated}
+                                                        type={"updated"}
+                                                    /> : "n/a"}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </Link>
+                            ))
+                                :
+                                <div>
+                                    <h3 className="noResult">Inga resultat</h3>
+                                    <p
+                                        className="clearSearch"
+                                        onClick={this.clickHandler}
+                                    >
+                                        Rensa sökning
+                                    </p>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </main>
             );
         }
-    };
+    }
 }
 
 export default Telereg;

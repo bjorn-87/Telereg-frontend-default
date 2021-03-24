@@ -17,8 +17,10 @@ function App() {
                 <header className="App-header">
                     <NavBar/>
                 </header>
+                <div className="headerTitle">
+                    <p>Teleregistret</p>
+                </div>
                 <div className="App-body" >
-                    {/* <h1>LKTelereg</h1> */}
                     <Route exact path="/" component={Telereg} />
                     <Route path="/connection/:id" component={ShowConnection} />
                     <Route path="/update/head/:id" component={UpdateHead} />

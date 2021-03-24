@@ -1,7 +1,7 @@
 /**
  * Function to return formatted Date.
- * 
- * @param {Object} props 
+ *
+ * @param {Object} props
  * @returns Formatted Date
  */
 function DateFormatter(props) {

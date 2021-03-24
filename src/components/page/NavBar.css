@@ -3,16 +3,17 @@
     background-color: #004369;
     display: flex;
     justify-content: space-between;
-    /* position: fixed; */
-    /* top: 0; */
-    /* width: 100%; */
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    width: 100%;
 }
 
 .NavBar ul {
     display: flex;
     flex-direction: row;
     text-decoration: none;
-    margin: 0.5em;
+    margin: 0.5rem;
 }
 
 .NavBar li {
@@ -23,7 +24,8 @@
 
 .NavBar a {
     text-decoration: none;
-    color: #9DDDFF;
+    /* color: #9DDDFF; */
+    color: #fff;
     /* font-size: 1.4rem; */
     margin-bottom: 0;
 }
@@ -40,9 +42,13 @@
 }
 
 .navBtn p {
-    font-size: 1rem;
+    font-size: 0.6rem;
     margin: 0;
     padding-top: 0.3em;
+}
+
+.add svg {
+    color: #fff;
 }
 
 .App-logo {
@@ -54,6 +60,7 @@
 .logoText {
     display: flex;
     flex-direction: row;
+    margin-top: 0.2rem;
 }
 
 .logoText p {
@@ -69,6 +76,12 @@
         /* display: none; */
         font-size: 0.6rem;
     }
+
+    /* .NavBar {
+        top: initial;
+        bottom: 0;
+        z-index: 1;
+    } */
 
     .logoText p {
         display: none;

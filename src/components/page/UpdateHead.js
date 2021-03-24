@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+// import {Link} from 'react-router-dom';
 import './UpdateHead.css';
 import config from '../../config';
+import PropTypes from 'prop-types';
 
 class UpdateHead extends Component {
     constructor(props) {
@@ -12,7 +13,7 @@ class UpdateHead extends Component {
         this.getContent = this.getContent.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.submitHandler = this.submitHandler.bind(this);
-        
+
         this.state = {
             Address: "",
             Apptype: "",
@@ -34,7 +35,7 @@ class UpdateHead extends Component {
             error: "",
             isLoaded: false,
             search: ""
-        }
+        };
     }
 
     componentDidMount() {
@@ -50,20 +51,19 @@ class UpdateHead extends Component {
         })
             .then((response) => response.json())
             .then((res) => {
-            if (res.data) {
-                console.log(res.data);
+                if (res.data) {
+                    console.log(res.data);
 
-                this.setState(res.data.head);
-                this.setState({
-                    isLoaded: true,
-                    line: res.data.line
-                });
-                console.log(this.state);
-
-            } else {
-                this.setState({error: res});
-            }
-        });
+                    this.setState(res.data.head);
+                    this.setState({
+                        isLoaded: true,
+                        line: res.data.line
+                    });
+                    console.log(this.state);
+                } else {
+                    this.setState({error: res});
+                }
+            });
     }
 
     submitHandler(event) {
@@ -85,90 +85,86 @@ class UpdateHead extends Component {
         });
     }
 
-    render () {
+    render() {
         const {
-            line, 
+            line,
             isLoaded,
             Id,
         } = this.state;
 
         if (isLoaded && Id) {
             return (
-                <div>
+                <main className="mainPage">
                     <div>
                         <form className="headerForm" onSubmit={this.submitHandler}>
-                            {/* ID:<input 
-                                type="number"
-                                value={this.state.Id}
-                                readOnly
-                            /> */}
-                            Namn:<input 
+                            Namn:<input
                                 type="text"
                                 name="Name"
                                 value={this.state.Name}
                                 onChange={this.handleChange}
                             />
-                            Nummer:<input 
+                            Nummer:<input
                                 type="text"
                                 name="Number"
                                 value={this.state.Number}
                                 onChange={this.handleChange}
                             />
-                            Typ:<input 
+                            Typ:<input
                                 type="text"
                                 name="Apptype"
                                 value={this.state.Apptype}
                                 onChange={this.handleChange}
                             />
-                            Typ2:<input 
+                            Typ2:<input
                                 type="text"
                                 name="ApptypeTwo"
                                 value={this.state.ApptypeTwo}
                                 onChange={this.handleChange}
                             />
-                            Document:<input 
+                            Document:<input
                                 type="text"
                                 name="Document"
                                 value={this.state.Document}
                                 onChange={this.handleChange}
                             />
-                            Ritning:<input 
+                            Ritning:<input
                                 type="text"
                                 name="Drawing"
                                 value={this.state.Drawing}
                                 onChange={this.handleChange}
                             />
-                            Funktion:<input 
+                            Funktion:<input
                                 type="text"
                                 name="Func"
                                 value={this.state.Func}
                                 onChange={this.handleChange}
                             />
-                            Address:<input 
+                            Address:<input
                                 type="text"
                                 name="Address"
                                 value={this.state.Address}
                                 onChange={this.handleChange}
                             />
-                            Användare:<input 
+                            Användare:<input
                                 type="text"
                                 name="UserFullName"
                                 value={this.state.UserFullName}
                                 onChange={this.handleChange}
                             />
-                            AnvändarId:<input 
+                            AnvändarId:<input
                                 type="text"
                                 name="UserId"
                                 value={this.state.UserId}
                                 onChange={this.handleChange}
                             />
-                            Övrigt:<input 
+                            Övrigt:<input
                                 type="text"
                                 name="Other"
+                                className="other"
                                 value={this.state.Other}
                                 onChange={this.handleChange}
                             />
-                            <input 
+                            <input
                                 type="submit"
                                 value="Skicka"
                             />
@@ -193,32 +189,35 @@ class UpdateHead extends Component {
                             </thead>
                             <tbody>
                                 {line ? line.map(element => (
-                                <tr key={element.Id}>
-                                    {/* <td><Link to={`/card/${element.Id}`}>{element.Number}</Link></td> */}
-                                    <td>{element.Position}</td>
-                                    <td>{element.Note}</td>
-                                    <td>{element.Rack}</td>
-                                    <td>{element.FieldFrom}</td>
-                                    <td>{element.NrFrom}</td>
-                                    <td>{element.KlFrom}</td>
-                                    <td>----&gt;</td>
-                                    <td>{element.FieldTo}</td>
-                                    <td>{element.NrTo}</td>
-                                    <td>{element.KlTo}</td>
-                                    <td>{element.Comment}</td>
-                                </tr>
+                                    <tr key={element.Id}>
+                                        <td>{element.Position}</td>
+                                        <td>{element.Note}</td>
+                                        <td>{element.Rack}</td>
+                                        <td>{element.FieldFrom}</td>
+                                        <td>{element.NrFrom}</td>
+                                        <td>{element.KlFrom}</td>
+                                        <td>----&gt;</td>
+                                        <td>{element.FieldTo}</td>
+                                        <td>{element.NrTo}</td>
+                                        <td>{element.KlTo}</td>
+                                        <td className="comment">{element.Comment}</td>
+                                    </tr>
                                 )) : null}
                             </tbody>
                         </table>
                     </div>
-                </div>
+                </main>
             );
         } else if (isLoaded && !Id) {
-            return <div className="PageNotFound"><h2>404 PageNotFound</h2></div>;           
+            return <div className="PageNotFound"><h2>404 PageNotFound</h2></div>;
         } else {
             return <div className="loading"><h2>Loading data...</h2></div>;
         }
-    };
+    }
 }
+
+UpdateHead.propTypes = {
+    match: PropTypes.object.isRequired
+};
 
 export default UpdateHead;

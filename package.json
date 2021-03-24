@@ -19,7 +19,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "https": "set HTTPS=true&&npm start"
+    "https": "set HTTPS=true&&npm start",
+    "eslint": "eslint ."
   },
   "eslintConfig": {
     "extends": [
@@ -38,5 +39,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint": "^7.22.0",
+    "eslint-plugin-react": "^7.23.1",
+    "javascript-style-guide": "^1.0.1"
   }
 }

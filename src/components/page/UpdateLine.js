@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import './UpdateLine.css';
 import './Table.css';
 import config from '../../config';
+import PropTypes from 'prop-types';
 
 class UpdateLine extends Component {
     constructor(props) {
@@ -13,7 +14,7 @@ class UpdateLine extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.submitHandler = this.submitHandler.bind(this);
         this.handleClick = this.handleClick.bind(this);
-        
+
         this.state = {
             head: {
                 Id: ""
@@ -24,7 +25,7 @@ class UpdateLine extends Component {
             error: "",
             isLoaded: false,
             search: ""
-        }
+        };
     }
 
     componentDidMount() {
@@ -40,17 +41,16 @@ class UpdateLine extends Component {
         })
             .then((response) => response.json())
             .then((res) => {
-            if (res.data) {
-
-                this.setState({
-                    isLoaded: true,
-                    head: res.data.head,
-                    line: res.data.line
-                });
-            } else {
-                this.setState({error: res});
-            }
-        });
+                if (res.data) {
+                    this.setState({
+                        isLoaded: true,
+                        head: res.data.head,
+                        line: res.data.line
+                    });
+                } else {
+                    this.setState({error: res});
+                }
+            });
     }
 
     submitHandler(event) {
@@ -89,6 +89,7 @@ class UpdateLine extends Component {
     handleClick(event) {
         const target = event.target;
         const value = parseInt(target.value);
+
         // console.log(target);
         // console.log(value);
         if (this.state.clicked === true && this.state.clickId !== value) {
@@ -105,16 +106,16 @@ class UpdateLine extends Component {
         event.preventDefault();
     }
 
-    render () {
+    render() {
         const {
-            line, 
+            line,
             isLoaded
         } = this.state;
         const Id = this.state.head.Id;
 
         if (isLoaded && Id) {
             return (
-                <div>
+                <main className="mainPage">
                     <div className="headerData">
                         <p><b>Nummer:</b> {this.state.head.Number}</p>
                         <p><b>Namn:</b> {this.state.head.Name}</p>
@@ -129,7 +130,6 @@ class UpdateLine extends Component {
                         <p><b>Övrigt:</b> {this.state.head.Other}</p>
                     </div>
                     <div>
-                        
                         <table className="table table-scroll table-stacked">
                             <thead>
                                 <tr>
@@ -149,127 +149,141 @@ class UpdateLine extends Component {
                                 </tr>
                             </thead>
                             {line ? line.map((element, idx) => (
-                            <tbody key={element.Id}>
-                                {this.state.clickId === element.Id && this.state.clicked === true ?
-                                <tr>
-                                    <td>                            
-                                        <input 
-                                            type="number"
-                                            name="Position"
-                                            value={element.Position}
-                                            onChange={this.handleChange(idx)}
-                                        />
-                                    </td>
-                                    <td>                            
-                                        <input 
-                                            type="text"
-                                            name="Note"
-                                            value={element.Note}
-                                            onChange={this.handleChange(idx)}
-                                        />
-                                    </td>
-                                    <td>                            
-                                        <input 
-                                            type="text"
-                                            name="Rack"
-                                            value={element.Rack}
-                                             onChange={this.handleChange(idx)}
-                                        />
-                                    </td>
-                                    <td>                            
-                                        <input 
-                                            type="text"
-                                            name="FieldFrom"
-                                            value={element.FieldFrom}
-                                             onChange={this.handleChange(idx)}
-                                        />
-                                    </td>
-                                    <td>                            
-                                        <input 
-                                            type="text"
-                                            name="NrFrom"
-                                            value={element.NrFrom}
-                                             onChange={this.handleChange(idx)}
-                                        />
-                                    </td>
-                                    <td>                            
-                                        <input 
-                                            type="text"
-                                            name="KlFrom"
-                                            value={element.KlFrom}
-                                             onChange={this.handleChange(idx)}
-                                        />
-                                    </td>
-                                    <td>----&gt;</td>
-                                    <td>                            
-                                        <input 
-                                            type="text"
-                                            name="FieldTo"
-                                            value={element.FieldTo}
-                                             onChange={this.handleChange(idx)}
-                                        />
-                                    </td>
-                                    <td>                            
-                                        <input 
-                                            type="text"
-                                            name="NrTo"
-                                            value={element.NrTo}
-                                             onChange={this.handleChange(idx)}
-                                        />
-                                    </td>
-                                    <td>                            
-                                        <input 
-                                            type="text"
-                                            name="KlTo"
-                                            value={element.KlTo}
-                                             onChange={this.handleChange(idx)}
-                                        />
-                                    </td>
-                                    <td>                            
-                                        <input 
-                                            type="text"
-                                            name="Comment"
-                                            value={element.Comment}
-                                             onChange={this.handleChange(idx)}
-                                        />
-                                    </td>
-                                    <td>
-                                        <input type="submit" value="Spara" onClick={this.submitHandler}/>
-                                    </td>
-                                    <td> 
-                                        <Link to="#">Radera</Link>
-                                    </td>
-                                    </tr> 
-                                    :
-                                    <tr>
-                                    <td>{element.Position}</td>
-                                    <td>{element.Note}</td>
-                                    <td>{element.Rack}</td>
-                                    <td>{element.FieldFrom}</td>
-                                    <td>{element.NrFrom}</td>
-                                    <td>{element.KlFrom}</td>
-                                    <td>----&gt;</td>
-                                    <td>{element.FieldTo}</td>
-                                    <td>{element.NrTo}</td>
-                                    <td>{element.KlTo}</td>
-                                    <td>{element.Comment}</td>
-                                    <td> 
-                                        <button value={element.Id} onClick={this.handleClick}>Redigera</button>
-                                    </td>
-
-                                    </tr>}
-                            </tbody>
-                        )) : null}
+                                <tbody key={element.Id}>
+                                    {this.state.clickId === element.Id
+                                        && this.state.clicked === true
+                                        ?
+                                        <tr>
+                                            <td>
+                                                <input
+                                                    type="number"
+                                                    name="Position"
+                                                    value={element.Position}
+                                                    onChange={this.handleChange(idx)}
+                                                />
+                                            </td>
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    name="Note"
+                                                    value={element.Note}
+                                                    onChange={this.handleChange(idx)}
+                                                />
+                                            </td>
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    name="Rack"
+                                                    value={element.Rack}
+                                                    onChange={this.handleChange(idx)}
+                                                />
+                                            </td>
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    name="FieldFrom"
+                                                    value={element.FieldFrom}
+                                                    onChange={this.handleChange(idx)}
+                                                />
+                                            </td>
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    name="NrFrom"
+                                                    value={element.NrFrom}
+                                                    onChange={this.handleChange(idx)}
+                                                />
+                                            </td>
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    name="KlFrom"
+                                                    value={element.KlFrom}
+                                                    onChange={this.handleChange(idx)}
+                                                />
+                                            </td>
+                                            <td className="arrow">--&gt;</td>
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    name="FieldTo"
+                                                    value={element.FieldTo}
+                                                    onChange={this.handleChange(idx)}
+                                                />
+                                            </td>
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    name="NrTo"
+                                                    value={element.NrTo}
+                                                    onChange={this.handleChange(idx)}
+                                                />
+                                            </td>
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    name="KlTo"
+                                                    value={element.KlTo}
+                                                    onChange={this.handleChange(idx)}
+                                                />
+                                            </td>
+                                            <td>
+                                                <textarea
+                                                    name="Comment"
+                                                    className="commentInput"
+                                                    value={element.Comment}
+                                                    onChange={this.handleChange(idx)}
+                                                />
+                                            </td>
+                                            <td>
+                                                <input
+                                                    type="submit"
+                                                    value="Spara"
+                                                    onClick={this.submitHandler}
+                                                />
+                                            </td>
+                                            <td>
+                                                <Link to="#">Radera</Link>
+                                            </td>
+                                        </tr>
+                                        :
+                                        <tr>
+                                            <td>{element.Position}</td>
+                                            <td>{element.Note}</td>
+                                            <td>{element.Rack}</td>
+                                            <td>{element.FieldFrom}</td>
+                                            <td>{element.NrFrom}</td>
+                                            <td>{element.KlFrom}</td>
+                                            <td className="arrow">--&gt;</td>
+                                            <td>{element.FieldTo}</td>
+                                            <td>{element.NrTo}</td>
+                                            <td>{element.KlTo}</td>
+                                            <td>{element.Comment}</td>
+                                            <td>
+                                                <button
+                                                    value={element.Id}
+                                                    onClick={this.handleClick}
+                                                >Redigera
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            )) : null}
                         </table>
                     </div>
-                </div>
+                </main>
             );
         } else if (isLoaded && !Id) {
-            return <div className="PageNotFound"><h2>404 PageNotFound</h2></div>;           
+            return <div className="PageNotFound"><h2>404 PageNotFound</h2></div>;
         } else {
             return <div className="loading"><h2>Loading data...</h2></div>;
         }
-    };
+    }
 }
+
+UpdateLine.propTypes = {
+    match: PropTypes.object.isRequired
+};
 
 export default UpdateLine;

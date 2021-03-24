@@ -1,8 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import Logo from '../../LKAB-toplogo.png';
-
-// import Timeline from '@material-ui/icons/Timeline';
+import AddCircle from '../../add_circle_outline-white-24dp/1x/baseline_add_circle_24dp.png';
 
 import './NavBar.css';
 
@@ -17,9 +16,11 @@ const NavBar = () => {
             </Link>
             <ul>
                 <li>
-                    <Link to="/">
+                    <Link to="/new">
                         <span className="navBtn">
-                            <p>Linjer</p>
+                            {/* <AddCircle/> */}
+                            <img className="" src={AddCircle} alt="Add" />
+                            <p>Ny koppling</p>
                         </span>
                     </Link>
                 </li>
