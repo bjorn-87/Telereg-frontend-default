@@ -1,15 +1,17 @@
 import React, {Component} from 'react';
-// import {Link} from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import './UpdateHead.css';
 import config from '../../config';
 import PropTypes from 'prop-types';
+import Auth from '../auth/Auth';
 
 class UpdateHead extends Component {
     constructor(props) {
         super(props);
+
+        this.user = Auth.GetUser();
         this.id = props.match.params.id;
-        console.log(this.id);
-        this.url = `${config.baseUrl}connections?id=${this.id}&api_key=${config.apiKey}`;
+        this.url = `${config.baseUrl}connections?id=${this.id}`;
         this.getContent = this.getContent.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.submitHandler = this.submitHandler.bind(this);
@@ -34,7 +36,8 @@ class UpdateHead extends Component {
             line: {},
             error: "",
             isLoaded: false,
-            search: ""
+            search: "",
+            redirect: false
         };
     }
 
@@ -42,43 +45,42 @@ class UpdateHead extends Component {
         this.getContent(this.url);
     }
 
-    getContent(url) {
+    async getContent(url) {
+        const token = await Auth.GetToken();
+
         fetch(url, {
             method: 'GET',
             headers: {
-                "Content-type": "application/json"
+                "Content-type": "application/json",
+                "authorization": token.accessToken
             },
         })
             .then((response) => response.json())
             .then((res) => {
                 if (res.data) {
-                    console.log(res.data);
-
                     this.setState(res.data.head);
                     this.setState({
                         isLoaded: true,
                         line: res.data.line
                     });
-                    console.log(this.state);
-                } else {
-                    this.setState({error: res});
+                } else if (res.errors) {
+                    this.setState({error: res.errors});
                 }
             });
     }
 
     submitHandler(event) {
-        console.log(this.state);
-        // this.getContent(`${this.baseUrl}`);
         event.preventDefault();
+        console.log(this.user);
+        this.setState({
+            redirect: true
+        });
     }
 
     handleChange(event) {
         const target = event.target;
         const value = target.value;
         const name = target.name;
-
-        console.log(value);
-        console.log(name);
 
         this.setState({
             [name]: value
@@ -90,88 +92,110 @@ class UpdateHead extends Component {
             line,
             isLoaded,
             Id,
+            redirect
         } = this.state;
 
-        if (isLoaded && Id) {
+        if (redirect) {
+            return <Redirect to={`/connection/${this.id}`}/>;
+        } else if (isLoaded && Id) {
             return (
                 <main className="mainPage">
-                    <div>
-                        <form className="headerForm" onSubmit={this.submitHandler}>
-                            Namn:<input
+                    <div className="headerDataHead">
+                        <div className="headerBlock">
+                            <h5>Nummer:</h5>
+                            <p>{this.state.Number}</p>
+                        </div>
+                        <div className="headerBlock">
+                            <h5>Namn:</h5>
+                            <input
                                 type="text"
                                 name="Name"
                                 value={this.state.Name}
                                 onChange={this.handleChange}
                             />
-                            Nummer:<input
-                                type="text"
-                                name="Number"
-                                value={this.state.Number}
-                                onChange={this.handleChange}
-                            />
-                            Typ:<input
+                        </div>
+                        <div className="headerBlock">
+                            <h5>Typ:</h5>
+                            <input
                                 type="text"
                                 name="Apptype"
                                 value={this.state.Apptype}
                                 onChange={this.handleChange}
                             />
-                            Typ2:<input
+                        </div>
+                        <div className="headerBlock">
+                            <h5>Typ2:</h5>
+                            <input
                                 type="text"
                                 name="ApptypeTwo"
                                 value={this.state.ApptypeTwo}
                                 onChange={this.handleChange}
                             />
-                            Document:<input
+                        </div>
+                        <div className="headerBlock">
+                            <h5>Document:</h5>
+                            <input
                                 type="text"
                                 name="Document"
                                 value={this.state.Document}
                                 onChange={this.handleChange}
                             />
-                            Ritning:<input
+                        </div>
+                        <div className="headerBlock">
+                            <h5>Ritning:</h5>
+                            <input
                                 type="text"
                                 name="Drawing"
                                 value={this.state.Drawing}
                                 onChange={this.handleChange}
                             />
-                            Funktion:<input
+                        </div>
+                        <div className="headerBlock">
+                            <h5>Funktion:</h5>
+                            <input
                                 type="text"
                                 name="Func"
                                 value={this.state.Func}
                                 onChange={this.handleChange}
                             />
-                            Address:<input
+                        </div>
+                        <div className="headerBlock">
+                            <h5>Address:</h5>
+                            <input
                                 type="text"
                                 name="Address"
                                 value={this.state.Address}
                                 onChange={this.handleChange}
                             />
-                            Användare:<input
-                                type="text"
-                                name="UserFullName"
-                                value={this.state.UserFullName}
-                                onChange={this.handleChange}
-                            />
-                            AnvändarId:<input
-                                type="text"
-                                name="UserId"
-                                value={this.state.UserId}
-                                onChange={this.handleChange}
-                            />
-                            Övrigt:<input
+                        </div>
+                        <div className="headerBlock">
+                            <h5>Användare:</h5>
+                            <p>{this.state.UserFullName}</p>
+                        </div>
+                        <div className="headerBlock">
+                            <h5>AnvändarId:</h5>
+                            <p>{this.state.UserId}</p>
+                        </div>
+                        <div className="headerBlock">
+                            <h5>Övrigt:</h5>
+                            <textarea
                                 type="text"
                                 name="Other"
                                 className="other"
                                 value={this.state.Other}
                                 onChange={this.handleChange}
-                            />
+                            ></textarea>
+                        </div>
+                        <div className="headerBlock">
                             <input
                                 type="submit"
-                                value="Skicka"
+                                value="Spara"
+                                onClick={this.submitHandler}
                             />
-                        </form>
+                        </div>
                     </div>
                     <div>
-                        <table>
+                        <table className="table table-scroll table-stacked">
                             <thead>
                                 <tr>
                                     <th>Position</th>
@@ -196,7 +220,7 @@ class UpdateHead extends Component {
                                         <td>{element.FieldFrom}</td>
                                         <td>{element.NrFrom}</td>
                                         <td>{element.KlFrom}</td>
-                                        <td>----&gt;</td>
+                                        <td>--&gt;</td>
                                         <td>{element.FieldTo}</td>
                                         <td>{element.NrTo}</td>
                                         <td>{element.KlTo}</td>

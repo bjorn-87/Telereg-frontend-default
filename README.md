@@ -72,3 +72,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 ## Dependencies
 msal  
 react-aad-msal
+image from material-ui opensource

@@ -2,13 +2,14 @@ import React, {Component} from 'react';
 import config from '../../config';
 import PropTypes from 'prop-types';
 import ShowConnectionTable from '../content/ShowConnectionTable';
+import Auth from '../auth/Auth';
 import './ShowConnection.css';
 
 class ShowConnection extends Component {
     constructor(props) {
         super(props);
         this.id = props.match.params.id;
-        this.url = `${config.baseUrl}connections?id=${this.id}&api_key=${config.apiKey}`;
+        this.url = `${config.baseUrl}connections?id=${this.id}`;
         this.getContent = this.getContent.bind(this);
         this.changeHandler = this.changeHandler.bind(this);
 
@@ -27,11 +28,14 @@ class ShowConnection extends Component {
         this.getContent(this.url);
     }
 
-    getContent(url) {
+    async getContent(url) {
+        const token = await Auth.GetToken();
+
         fetch(url, {
             method: 'GET',
             headers: {
-                "Content-type": "application/json"
+                "Content-type": "application/json",
+                "authorization": token.accessToken
             },
         })
             .then((response) => response.json())
@@ -41,8 +45,8 @@ class ShowConnection extends Component {
                         data: res.data,
                         isloaded: true
                     });
-                } else {
-                    this.setState({error: res});
+                } else if (res.errors) {
+                    this.setState({error: res.errors});
                 }
             });
     }

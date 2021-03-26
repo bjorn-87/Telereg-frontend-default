@@ -7,25 +7,27 @@ import './NavBar.css';
 
 const NavBar = () => {
     return (
-        <nav className="NavBar">
-            <Link to="/">
-                <span className="logoText">
-                    <img className="App-logo" src={Logo} alt="logo" />
-                    <p>| Teleregistret</p>
-                </span>
-            </Link>
-            <ul>
-                <li>
-                    <Link to="/new">
-                        <span className="navBtn">
-                            {/* <AddCircle/> */}
-                            <img className="" src={AddCircle} alt="Add" />
-                            <p>Ny koppling</p>
-                        </span>
-                    </Link>
-                </li>
-            </ul>
-        </nav>
+        <div className="navContainer">
+            <nav className="NavBar">
+                <Link to="/">
+                    <span className="logoText">
+                        <img className="App-logo" src={Logo} alt="logo" />
+                        <p>| Teleregistret</p>
+                    </span>
+                </Link>
+                <ul>
+                    <li>
+                        <Link to="/new">
+                            <span className="navBtn">
+                                {/* <AddCircle/> */}
+                                <img className="" src={AddCircle} alt="Add" />
+                                <p>Ny koppling</p>
+                            </span>
+                        </Link>
+                    </li>
+                </ul>
+            </nav>
+        </div>
     );
 };
 

@@ -90,7 +90,7 @@ const ShowConnectionTable = (props) => {
                         <p>{checkEmpty(props.data.head.Document)}</p>
                     </div>
                     <div className="headerBlock">
-                        <h5>Dokument:</h5>
+                        <h5>Kommentar:</h5>
                         <p>{checkEmpty(props.data.head.Comment)}</p>
                     </div>
                 </div>

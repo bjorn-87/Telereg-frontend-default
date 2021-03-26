@@ -1,15 +1,17 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import './UpdateLine.css';
-import './Table.css';
 import config from '../../config';
 import PropTypes from 'prop-types';
+import Auth from '../auth/Auth';
+import './UpdateLine.css';
+import './Table.css';
+
 
 class UpdateLine extends Component {
     constructor(props) {
         super(props);
         this.id = props.match.params.id;
-        this.url = `${config.baseUrl}connections?id=${this.id}&api_key=${config.apiKey}`;
+        this.url = `${config.baseUrl}connections?id=${this.id}`;
         this.getContent = this.getContent.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.submitHandler = this.submitHandler.bind(this);
@@ -32,11 +34,14 @@ class UpdateLine extends Component {
         this.getContent(this.url);
     }
 
-    getContent(url) {
+    async getContent(url) {
+        const token = await Auth.GetToken();
+
         fetch(url, {
             method: 'GET',
             headers: {
-                "Content-type": "application/json"
+                "Content-type": "application/json",
+                "authorization": token.accessToken
             },
         })
             .then((response) => response.json())
@@ -47,20 +52,19 @@ class UpdateLine extends Component {
                         head: res.data.head,
                         line: res.data.line
                     });
-                } else {
-                    this.setState({error: res});
+                } else if (res.errors) {
+                    this.setState({error: res.errors});
                 }
             });
     }
 
     submitHandler(event) {
-        // this.state.line.find()
-        console.log(event);
-        // const target = event.target;
-        // const value = target.value;
-        // console.log(target);
-        // console.log(value);
-        // this.getContent(`${this.baseUrl}`);
+        const target = event.target;
+        const value = target.value;
+        const found = this.state.line.find(element => element.Id == value);
+
+        console.log(found);
+
         this.setState({
             clickId: "",
             clicked: false
@@ -82,16 +86,12 @@ class UpdateLine extends Component {
         this.setState({
             line: newLine
         });
-        console.log(value);
-        console.log(name);
     }
 
     handleClick(event) {
         const target = event.target;
         const value = parseInt(target.value);
 
-        // console.log(target);
-        // console.log(value);
         if (this.state.clicked === true && this.state.clickId !== value) {
             this.setState({
                 clickId: value
@@ -102,7 +102,6 @@ class UpdateLine extends Component {
                 clickId: value
             }));
         }
-        // console.log(this.state);
         event.preventDefault();
     }
 
@@ -116,18 +115,40 @@ class UpdateLine extends Component {
         if (isLoaded && Id) {
             return (
                 <main className="mainPage">
-                    <div className="headerData">
-                        <p><b>Nummer:</b> {this.state.head.Number}</p>
-                        <p><b>Namn:</b> {this.state.head.Name}</p>
-                        <p><b>Adress:</b> {this.state.head.Address}</p>
-                        <p><b>Funktion:</b> {this.state.head.Func}</p>
-                        <p><b>Ritning:</b> {this.state.head.Drawing}</p>
-                        <p><b>Apptyp:</b> {this.state.head.Apptype}</p>
-                        <p><b>Användare:</b> {this.state.head.UserFullName}</p>
-                        <p><b>Dokument:</b> {this.state.head.Document}</p>
-                        <p><b>Apptyp2:</b> {this.state.head.ApptypeTwo}</p>
-                        <p><b>AnvändarId:</b> {this.state.head.UserId}</p>
-                        <p><b>Övrigt:</b> {this.state.head.Other}</p>
+                    <div className="headerDataLine">
+                        <div className="headerBlock">
+                            <h5>Nummer:</h5><p>{this.state.head.Number}</p>
+                        </div>
+                        <div className="headerBlock">
+                            <h5>Namn:</h5><p>{this.state.head.Name}</p>
+                        </div>
+                        <div className="headerBlock">
+                            <h5>Adress:</h5><p>{this.state.head.Address}</p>
+                        </div>
+                        <div className="headerBlock">
+                            <h5>Funktion:</h5><p>{this.state.head.Func}</p>
+                        </div>
+                        <div className="headerBlock">
+                            <h5>Ritning:</h5><p>{this.state.head.Drawing}</p>
+                        </div>
+                        <div className="headerBlock">
+                            <h5>Apptyp:</h5><p>{this.state.head.Apptype}</p>
+                        </div>
+                        <div className="headerBlock">
+                            <h5>Användare:</h5><p>{this.state.head.UserFullName}</p>
+                        </div>
+                        <div className="headerBlock">
+                            <h5>Dokument:</h5><p>{this.state.head.Document}</p>
+                        </div>
+                        <div className="headerBlock">
+                            <h5>Apptyp2:</h5><p>{this.state.head.ApptypeTwo}</p>
+                        </div>
+                        <div className="headerBlock">
+                            <h5>AnvändarId:</h5><p>{this.state.head.UserId}</p>
+                        </div>
+                        <div className="headerBlock">
+                            <h5>Övrigt:</h5><p>{this.state.head.Other}</p>
+                        </div>
                     </div>
                     <div>
                         <table className="table table-scroll table-stacked">
@@ -163,9 +184,10 @@ class UpdateLine extends Component {
                                                 />
                                             </td>
                                             <td>
-                                                <input
+                                                <textarea
                                                     type="text"
                                                     name="Note"
+                                                    className="commentInput"
                                                     value={element.Note}
                                                     onChange={this.handleChange(idx)}
                                                 />
@@ -236,11 +258,11 @@ class UpdateLine extends Component {
                                                 />
                                             </td>
                                             <td>
-                                                <input
-                                                    type="submit"
-                                                    value="Spara"
+                                                <button
+                                                    className="saveButton"
+                                                    value={element.Id}
                                                     onClick={this.submitHandler}
-                                                />
+                                                >Spara</button>
                                             </td>
                                             <td>
                                                 <Link to="#">Radera</Link>
@@ -258,10 +280,15 @@ class UpdateLine extends Component {
                                             <td>{element.FieldTo}</td>
                                             <td>{element.NrTo}</td>
                                             <td>{element.KlTo}</td>
-                                            <td>{element.Comment}</td>
+                                            <td className="comment">
+                                                <p>
+                                                    {element.Comment}
+                                                </p>
+                                            </td>
                                             <td>
                                                 <button
                                                     value={element.Id}
+                                                    className="editButton"
                                                     onClick={this.handleClick}
                                                 >Redigera
                                                 </button>

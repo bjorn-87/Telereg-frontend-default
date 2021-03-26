@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import DateFormatter from '../content/DateFormatter';
-import './Telereg.css';
 import config from '../../config';
+import Auth from '../auth/Auth';
+import './Telereg.css';
 
 class Telereg extends Component {
     constructor(props) {
@@ -25,11 +26,14 @@ class Telereg extends Component {
         this.getContent(`${this.baseUrl}all`);
     }
 
-    getContent(url) {
+    async getContent(url) {
+        const token = await Auth.GetToken();
+
         fetch(url, {
             method: 'GET',
             headers: {
-                "Content-type": "application/json"
+                "Content-type": "application/json",
+                "authorization": token.accessToken
             },
         })
             .then((response) => response.json())
@@ -39,8 +43,8 @@ class Telereg extends Component {
                         data: res.data,
                         isloaded: true
                     });
-                } else {
-                    this.setState({error: res});
+                } else if (res.errors) {
+                    this.setState({error: res.errors});
                 }
             });
     }
