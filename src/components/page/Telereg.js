@@ -23,7 +23,7 @@ class Telereg extends Component {
     }
 
     componentDidMount() {
-        this.getContent(`${this.baseUrl}all`);
+        this.getContent(`${this.baseUrl}headers`);
     }
 
     async getContent(url) {
@@ -53,16 +53,16 @@ class Telereg extends Component {
         let url = "";
 
         if (this.state.search) {
-            url = `${this.baseUrl}search?search=${this.state.search}`;
+            url = `${this.baseUrl}headers/search?search=${this.state.search}`;
         } else {
-            url = `${this.baseUrl}all`;
+            url = `${this.baseUrl}headers/`;
         }
         this.getContent(url);
         event.preventDefault();
     }
 
     clickHandler(event) {
-        let url = `${this.baseUrl}all`;
+        let url = `${this.baseUrl}headers`;
 
         this.setState({
             search: ""

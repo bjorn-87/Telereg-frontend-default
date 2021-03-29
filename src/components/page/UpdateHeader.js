@@ -1,17 +1,17 @@
 import React, {Component} from 'react';
 import { Redirect } from 'react-router-dom';
-import './UpdateHead.css';
+import './UpdateHeader.css';
 import config from '../../config';
 import PropTypes from 'prop-types';
 import Auth from '../auth/Auth';
 
-class UpdateHead extends Component {
+class UpdateHeader extends Component {
     constructor(props) {
         super(props);
 
         this.user = Auth.GetUser();
         this.id = props.match.params.id;
-        this.url = `${config.baseUrl}connections?id=${this.id}`;
+        this.url = `${config.baseUrl}connections/${this.id}`;
         this.getContent = this.getContent.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.submitHandler = this.submitHandler.bind(this);
@@ -240,8 +240,8 @@ class UpdateHead extends Component {
     }
 }
 
-UpdateHead.propTypes = {
+UpdateHeader.propTypes = {
     match: PropTypes.object.isRequired
 };
 
-export default UpdateHead;
+export default UpdateHeader;

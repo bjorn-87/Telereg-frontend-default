@@ -90,8 +90,8 @@ const ShowConnectionTable = (props) => {
                         <p>{checkEmpty(props.data.head.Document)}</p>
                     </div>
                     <div className="headerBlock">
-                        <h5>Kommentar:</h5>
-                        <p>{checkEmpty(props.data.head.Comment)}</p>
+                        <h5>Övrigt:</h5>
+                        <p>{checkEmpty(props.data.head.Other)}</p>
                     </div>
                 </div>
                 <table className="table table-scroll table-stacked">

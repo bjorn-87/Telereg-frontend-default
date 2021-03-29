@@ -11,7 +11,7 @@ class UpdateLine extends Component {
     constructor(props) {
         super(props);
         this.id = props.match.params.id;
-        this.url = `${config.baseUrl}connections?id=${this.id}`;
+        this.url = `${config.baseUrl}connections/${this.id}`;
         this.getContent = this.getContent.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.submitHandler = this.submitHandler.bind(this);

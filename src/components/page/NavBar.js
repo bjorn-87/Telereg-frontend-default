@@ -17,7 +17,7 @@ const NavBar = () => {
                 </Link>
                 <ul>
                     <li>
-                        <Link to="/new">
+                        <Link to="/new/head">
                             <span className="navBtn">
                                 {/* <AddCircle/> */}
                                 <img className="" src={AddCircle} alt="Add" />
