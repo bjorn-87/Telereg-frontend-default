@@ -1,84 +1,98 @@
-.button {
-    color: #333;
-    background-color: #fff;
+.full-width-button {
+  width: 100%;
+}
+
+.blue-button {
+    background-color: #004369;
+    color: #fff;
+    border: 1px solid #000;
+}
+
+.editButton {
+    border-radius: 3px;
+    width: 75px;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+.smallDeleteButton {
+    border-radius: 3px;
+    padding: 0.5rem;
+    font-size: 13.3333px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    background-color: rgb(220,49,52);
+    border: 1px solid #004369;
+    margin-top: 0.5rem;
+}
+
+.smallDeleteButton a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.saveButton {
+    border-radius: 3px;
+    width: 75px;
+    padding: 0.5rem;
+    cursor: pointer;
+    line-height: 1.4;
+}
+
+.createButton,
+.deleteButton {
     border: 1px solid #cccccc;
     text-decoration: none;
     box-sizing: border-box;
-    display: inline-block;
-    font-family: "Open sans", sans-serif;
+    display: block;
+    margin: 0 auto;
     font-size: 1.4rem;
     padding: 0.4rem 1rem;
     text-align: center;
     line-height: 1.4;
     margin-bottom: 1.4rem;
-    width: 100%;
+    width: 50%;
+    cursor: pointer;
 }
-  
-.createButton {
-    color: #333;
-    background-color: #fff;
-    background-image: linear-gradient(#fff, #cccccc);
-    border: 1px solid #cccccc;
-    text-decoration: none;
-    box-sizing: border-box;
-    display: inline-block;
-    font-family: "Open sans", sans-serif;
-    font-size: 1rem;
-    padding: 0.2rem 0.2rem;
-    text-align: center;
-    border-radius: 0.2rem;
-    line-height: 1.4;
-    margin-bottom: 1.4rem;
-    box-shadow: 0px 3px 5px 0px #999;
-}
-  
-.editButton {
-      width: 50%;
-      margin: 1em auto;
-}
-  
-.button:hover {
-    background-color: #b3b3b3;
-    background-image: none;
-}
-  
-.button:active {
-    background-color: #a6a6a6;
-    background-image: none;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15);
-}
-  
-.full-width-button {
-  width: 100%;
-}
-  
-.blue-button {
+
+.red-button {
     color: #fff;
-    background-color: #1e6a9c;
-    margin-top: 0.5em;
+    background-color: rgb(220,49,52);
+    border: 2px solid #004369;
 }
-  
-.blue-button:hover {
-    background-color: #164f75;
-    background-image: none;
-}
-  
-.blue-button:active {
-    background-color: #001527;
-    background-image: none;
-}
-  
+
 .green-button {
     color: #fff;
-    background-color: #00a282;
+    background-color: rgb(127,186,0);
 }
-  
-.green-button:hover {
-    background-color: #007961;
-    background-image: none;
+
+.backButton {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    display: flex;
 }
-  
-.green-button:active {
-    background-color: #003c30;
-    background-image: none;
+
+.backButton a {
+    padding: 0.5em;
+    text-decoration: none;
+    background-color: #004369;
+    color: #fff;
+    margin-bottom: 0;
+}
+
+
+@media only screen and (max-width: 1000px) {
+    .editButton,
+    .saveButton {
+        width: 100%;
+        height: 3em;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .deleteButton {
+        width: 95%;
+        height: 3rem;
+    }
 }

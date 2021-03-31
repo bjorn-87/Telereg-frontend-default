@@ -1,11 +1,15 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import Logo from '../../LKAB-toplogo.png';
-import AddCircle from '../../add_circle_outline-white-24dp/1x/baseline_add_circle_24dp.png';
+import Auth from '../auth/Auth';
+import AddCircle from '../../icons/1x/baseline_add_circle_24dp.png';
+import Person from '../../icons/1x/baseline_person_white_24dp.png';
 
 import './NavBar.css';
 
 const NavBar = () => {
+    const user = Auth.GetUser();
+
     return (
         <div className="navContainer">
             <nav className="NavBar">
@@ -17,11 +21,17 @@ const NavBar = () => {
                 </Link>
                 <ul>
                     <li>
+                        <span className="userInfo">
+                            <img className="" src={Person} alt="Add" />
+                            {/* <p>Inloggad:</p> */}
+                            <p>{user.name}</p>
+                        </span>
+                    </li>
+                    <li>
                         <Link to="/new/head">
                             <span className="navBtn">
-                                {/* <AddCircle/> */}
                                 <img className="" src={AddCircle} alt="Add" />
-                                <p>Ny koppling</p>
+                                <p>Ny Koppling</p>
                             </span>
                         </Link>
                     </li>

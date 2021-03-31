@@ -1,0 +1,17 @@
+.confirmationBox {
+    box-shadow: 0px 1px 7px 2px #aaa;
+    padding-bottom: 5em;
+}
+
+.confirmationBox h2 {
+    padding-top: 5rem;
+    text-align: center;
+}
+
+.noHeader {
+    padding-top: 5rem;
+}
+
+/* @media only screen and (max-width: 700px) {
+
+} */

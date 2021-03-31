@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import './UpdateHeader.css';
 import config from '../../config';
 import Auth from '../auth/Auth';
+import '../content/Buttons.css';
 
 class NewHeader extends Component {
     constructor(props) {
@@ -62,8 +63,6 @@ class NewHeader extends Component {
             other: Other
         };
 
-        // console.log(payload);
-
         fetch(this.url, {
             method: 'POST',
             headers: {
@@ -75,7 +74,6 @@ class NewHeader extends Component {
             .then((response) => response.json())
             .then((res) => {
                 if (res.data) {
-                    console.log(res);
                     this.setState({
                         Id: res.data.id,
                         redirect: true
@@ -124,6 +122,9 @@ class NewHeader extends Component {
                     <div className="error">
                         {errors ? <h3>{errors}</h3> : null}
                     </div>
+                    <div className="backButton">
+                        <Link to="/" className="blue-button">Tillbaka</Link>
+                    </div>
                     <form className="headerDataHead" onSubmit={this.submitHandler}>
                         <div className="headerBlock">
                             <h5>Nummer:</h5>
@@ -167,7 +168,7 @@ class NewHeader extends Component {
                             />
                         </div>
                         <div className="headerBlock">
-                            <h5>Document:</h5>
+                            <h5>Dokument:</h5>
                             <input
                                 maxLength="50"
                                 type="text"
@@ -197,7 +198,7 @@ class NewHeader extends Component {
                             />
                         </div>
                         <div className="headerBlock">
-                            <h5>Address:</h5>
+                            <h5>Adress:</h5>
                             <input
                                 maxLength="50"
                                 type="text"

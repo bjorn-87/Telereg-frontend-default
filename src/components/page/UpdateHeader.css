@@ -1,24 +1,14 @@
 .headerDataHead {
-    margin-top: 5rem;
-    /* display: block; */
     width: 100%;
-    /* text-align: center; */
     margin-bottom: 1rem;
     box-shadow: 0px 1px 7px 2px #aaa;
     padding-bottom: 1.5rem;
+    border: 2px solid #004369;
 } 
 
 
 .headerBlock {
-    /* border: 1px solid; */
     display: inline-block;
     padding-left: 0.5rem;
-    /* float: left; */
     width: 300px;
-    /* height: 150px; */
 }
-
-/* .headerBlock  {
-    overflow-wrap: break-word;
-    margin-top: 0;
-} */

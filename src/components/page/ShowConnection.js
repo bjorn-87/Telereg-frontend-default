@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import ShowConnectionTable from '../content/ShowConnectionTable';
 import Auth from '../auth/Auth';
 import './ShowConnection.css';
+import './Table.css';
+import '../content/Buttons.css';
 
 class ShowConnection extends Component {
     constructor(props) {
@@ -41,7 +43,6 @@ class ShowConnection extends Component {
             .then((response) => response.json())
             .then((res) => {
                 if (res.data) {
-                    console.log(res);
                     this.setState({
                         data: res.data,
                         isloaded: true

@@ -14,13 +14,8 @@ html {
     margin: 0 auto;
     min-height: 40em;
     line-height: 1.4;
-    /* padding: 1em; */
     width:70%;
 }
-
-/* .app {
-  padding: 1.4rem 0.6rem;
-} */
 
 main {
     margin-top: 3.5rem;
@@ -74,11 +69,7 @@ code {
 }
 
 .pageFooter {
-    /* position: absolute; */
-    /* bottom: 0; */
-    /* margin-top: 1em; */
     width: 100%;
-  /* position: absolute; */
     display: flex;
     justify-content: center;
     background-color: #111;
@@ -98,8 +89,6 @@ code {
         margin-left: 0.5rem;
         margin-top: 3.5rem;
         color: #004369;
-        /* width: 100%; */
-        /* background-color: blue; */
     }
 
     .App-body {
@@ -109,7 +98,7 @@ code {
     main {
         margin-top: 0;
     }
-    
+
     .headerTitle p {
         margin-top: 0;
         margin-bottom: 0;

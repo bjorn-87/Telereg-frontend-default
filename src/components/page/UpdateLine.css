@@ -1,20 +1,8 @@
-.table input[type=number],
-.table input[type=text] {
-    width: 70%;
-    padding: 0.3rem 0.6rem;
-}
-
-.commentInput {
-    height: 2rem;
-    padding: 0.3rem 0.6rem;
-    resize: vertical;
-}
-
 .headerDataLine {
-    width: 100%;
-    margin-top: 5rem;
+    padding: 0.5rem;
     margin-bottom: 1rem;
     box-shadow: 0px 1px 7px 2px #aaa;
+    border: 2px solid #004369;
 } 
 
 @media screen and (max-width: 700px) {

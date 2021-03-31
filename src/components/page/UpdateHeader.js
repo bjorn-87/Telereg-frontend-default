@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
-import { Redirect } from 'react-router-dom';
-import './UpdateHeader.css';
+import { Redirect, Link } from 'react-router-dom';
 import config from '../../config';
 import PropTypes from 'prop-types';
 import Auth from '../auth/Auth';
+import './UpdateHeader.css';
+import './NavBar.css';
+import '../content/Buttons.css';
 
 class UpdateHeader extends Component {
     constructor(props) {
@@ -11,7 +13,7 @@ class UpdateHeader extends Component {
 
         this.user = Auth.GetUser();
         this.id = props.match.params.id;
-        this.url = `${config.baseUrl}connections/${this.id}`;
+        this.url = config.baseUrl;
         this.getContent = this.getContent.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.submitHandler = this.submitHandler.bind(this);
@@ -42,7 +44,7 @@ class UpdateHeader extends Component {
     }
 
     componentDidMount() {
-        this.getContent(this.url);
+        this.getContent(`${this.url}connections/${this.id}`);
     }
 
     async getContent(url) {
@@ -69,12 +71,69 @@ class UpdateHeader extends Component {
             });
     }
 
-    submitHandler(event) {
+    async submitHandler(event) {
         event.preventDefault();
-        console.log(this.user);
-        this.setState({
-            redirect: true
-        });
+
+        const {
+            Address,
+            Apptype,
+            ApptypeTwo,
+            Document,
+            Drawing,
+            Func,
+            Id,
+            Name,
+            Number,
+            Other } = this.state;
+
+        const token = await Auth.GetToken();
+
+        let payload = {
+            id: Id,
+            number: Number,
+            name: Name,
+            func: Func,
+            address: Address,
+            drawing: Drawing,
+            apptype: Apptype,
+            document: Document,
+            userid: this.user.userName,
+            apptypetwo: ApptypeTwo,
+            userfullname: this.user.name,
+            other: Other,
+        };
+
+        fetch(`${this.url}headers`, {
+            method: 'PUT',
+            headers: {
+                "Content-type": "application/json",
+                "authorization": token.accessToken
+            },
+            body: JSON.stringify(payload)
+        })
+            .then((response) => response)
+            .then((res) => {
+                if (res.ok) {
+                    this.setState({
+                        redirect: true
+                    });
+                } else {
+                    let err;
+
+                    switch (res.status) {
+                        case 409:
+                            err = "Numret är upptaget";
+                            break;
+                        case 400:
+                            err = "Numret saknas";
+                            break;
+                        default:
+                            err = "Något gick fel";
+                            break;
+                    }
+                    this.setState({error: err});
+                }
+            });
     }
 
     handleChange(event) {
@@ -92,7 +151,8 @@ class UpdateHeader extends Component {
             line,
             isLoaded,
             Id,
-            redirect
+            redirect,
+            error
         } = this.state;
 
         if (redirect) {
@@ -100,14 +160,28 @@ class UpdateHeader extends Component {
         } else if (isLoaded && Id) {
             return (
                 <main className="mainPage">
-                    <div className="headerDataHead">
+                    <div className="connectionNavBar">
+                        <Link to={`/connection/${this.id}`} className="blue-button">
+                            Tillbaka
+                        </Link>
+                    </div>
+                    {error ? <h2>{error}</h2> : null}
+                    <form className="headerDataHead" onSubmit={this.submitHandler}>
                         <div className="headerBlock">
                             <h5>Nummer:</h5>
-                            <p>{this.state.Number}</p>
+                            <input
+                                required
+                                maxLength="50"
+                                type="text"
+                                name="Number"
+                                value={this.state.Number}
+                                onChange={this.handleChange}
+                            />
                         </div>
                         <div className="headerBlock">
                             <h5>Namn:</h5>
                             <input
+                                maxLength="50"
                                 type="text"
                                 name="Name"
                                 value={this.state.Name}
@@ -117,6 +191,7 @@ class UpdateHeader extends Component {
                         <div className="headerBlock">
                             <h5>Typ:</h5>
                             <input
+                                maxLength="50"
                                 type="text"
                                 name="Apptype"
                                 value={this.state.Apptype}
@@ -126,6 +201,7 @@ class UpdateHeader extends Component {
                         <div className="headerBlock">
                             <h5>Typ2:</h5>
                             <input
+                                maxLength="50"
                                 type="text"
                                 name="ApptypeTwo"
                                 value={this.state.ApptypeTwo}
@@ -135,6 +211,7 @@ class UpdateHeader extends Component {
                         <div className="headerBlock">
                             <h5>Document:</h5>
                             <input
+                                maxLength="50"
                                 type="text"
                                 name="Document"
                                 value={this.state.Document}
@@ -144,6 +221,7 @@ class UpdateHeader extends Component {
                         <div className="headerBlock">
                             <h5>Ritning:</h5>
                             <input
+                                maxLength="50"
                                 type="text"
                                 name="Drawing"
                                 value={this.state.Drawing}
@@ -153,6 +231,7 @@ class UpdateHeader extends Component {
                         <div className="headerBlock">
                             <h5>Funktion:</h5>
                             <input
+                                maxLength="50"
                                 type="text"
                                 name="Func"
                                 value={this.state.Func}
@@ -160,8 +239,9 @@ class UpdateHeader extends Component {
                             />
                         </div>
                         <div className="headerBlock">
-                            <h5>Address:</h5>
+                            <h5>Adress:</h5>
                             <input
+                                maxLength="50"
                                 type="text"
                                 name="Address"
                                 value={this.state.Address}
@@ -179,6 +259,7 @@ class UpdateHeader extends Component {
                         <div className="headerBlock">
                             <h5>Övrigt:</h5>
                             <textarea
+                                maxLength="100"
                                 type="text"
                                 name="Other"
                                 className="other"
@@ -190,24 +271,23 @@ class UpdateHeader extends Component {
                             <input
                                 type="submit"
                                 value="Spara"
-                                onClick={this.submitHandler}
                             />
                         </div>
-                    </div>
+                    </form>
                     <div>
-                        <table className="table table-scroll table-stacked">
+                        <table className="table table-stacked">
                             <thead>
                                 <tr>
                                     <th>Position</th>
                                     <th>Notering</th>
                                     <th>Ställ</th>
-                                    <th>Från fält</th>
-                                    <th>Från nummer</th>
-                                    <th>Från uttag</th>
+                                    <th>Fält</th>
+                                    <th>Nummer</th>
+                                    <th>Uttag</th>
                                     <th>          </th>
-                                    <th>Till fält</th>
-                                    <th>Till nummer</th>
-                                    <th>Till uttag</th>
+                                    <th>Fält</th>
+                                    <th>Nummer</th>
+                                    <th>Uttag</th>
                                     <th>Kommentar</th>
                                 </tr>
                             </thead>
@@ -224,7 +304,7 @@ class UpdateHeader extends Component {
                                         <td>{element.FieldTo}</td>
                                         <td>{element.NrTo}</td>
                                         <td>{element.KlTo}</td>
-                                        <td className="comment">{element.Comment}</td>
+                                        <td className="comment"><p>{element.Comment}</p></td>
                                     </tr>
                                 )) : null}
                             </tbody>

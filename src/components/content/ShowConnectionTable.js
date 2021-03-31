@@ -19,13 +19,20 @@ const ShowConnectionTable = (props) => {
             <main className="mainPage">
                 <div className="connectionNavBar">
                     <Link
+                        to="/"
+                        className="blue-button"
+                    >Tillbaka</Link>
+                    <Link
                         to={`/update/head/${encodeURIComponent(props.data.head.Id)}`}
+                        className="blue-button"
                     >Redigera huvud</Link>
                     <Link
                         to={`/update/line/${encodeURIComponent(props.data.head.Id)}`}
+                        className="blue-button"
                     >Redigera Linje</Link>
                     <Link
                         to={`/delete/connection/${encodeURIComponent(props.data.head.Id)}`}
+                        className="red-button"
                     >Radera Kopplingskort</Link>
                 </div>
                 <div className="headerData">
@@ -40,12 +47,24 @@ const ShowConnectionTable = (props) => {
                         <p>{checkEmpty(props.data.head.Name)}</p>
                     </div>
                     <div className="headerBlock">
+                        <h5>Address:</h5>
+                        <p>{checkEmpty(props.data.head.Address)}</p>
+                    </div>
+                    <div className="headerBlock">
                         <h5>Funktion:</h5>
                         <p>{checkEmpty(props.data.head.Func)}</p>
                     </div>
                     <div className="headerBlock">
-                        <h5>Address:</h5>
-                        <p>{checkEmpty(props.data.head.Address)}</p>
+                        <h5>Ritning:</h5>
+                        <p>{checkEmpty(props.data.head.Drawing)}</p>
+                    </div>
+                    <div className="headerBlock">
+                        <h5>Apptyp:</h5>
+                        <p>{checkEmpty(props.data.head.Apptype)}</p>
+                    </div>
+                    <div className="headerBlock">
+                        <h5>Apptyp2:</h5>
+                        <p>{checkEmpty(props.data.head.ApptypeTwo)}</p>
                     </div>
                     <div className="headerBlock">
                         <h5>Skapad:</h5>
@@ -66,24 +85,12 @@ const ShowConnectionTable = (props) => {
                         </p>
                     </div>
                     <div className="headerBlock">
-                        <h5>Apptyp:</h5>
-                        <p>{checkEmpty(props.data.head.Apptype)}</p>
-                    </div>
-                    <div className="headerBlock">
-                        <h5>Apptyp2:</h5>
-                        <p>{checkEmpty(props.data.head.ApptypeTwo)}</p>
-                    </div>
-                    <div className="headerBlock">
                         <h5>Användarnamn:</h5>
                         <p>{checkEmpty(props.data.head.UserId)}</p>
                     </div>
                     <div className="headerBlock">
                         <h5>Användare:</h5>
                         <p>{checkEmpty(props.data.head.UserFullName)}</p>
-                    </div>
-                    <div className="headerBlock">
-                        <h5>Ritning:</h5>
-                        <p>{checkEmpty(props.data.head.Drawing)}</p>
                     </div>
                     <div className="headerBlock">
                         <h5>Dokument:</h5>
@@ -94,24 +101,24 @@ const ShowConnectionTable = (props) => {
                         <p>{checkEmpty(props.data.head.Other)}</p>
                     </div>
                 </div>
-                <table className="table table-scroll table-stacked">
+                <table className="table table-stacked">
                     <thead>
                         <tr>
                             <th>Rad</th>
                             <th>Notering</th>
                             <th>Ställ</th>
-                            <th>Från fält</th>
-                            <th>Från nummer</th>
-                            <th>Från uttag</th>
+                            <th>Fält</th>
+                            <th>Nummer</th>
+                            <th>Uttag</th>
                             <th>          </th>
-                            <th>Till fält</th>
-                            <th>Till nummer</th>
-                            <th>Till uttag</th>
+                            <th>Fält</th>
+                            <th>Nummer</th>
+                            <th>Uttag</th>
                             <th>Kommentar</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {props.data.line ? props.data.line.map(element => (
+                        {props.data.line.length > 0 ? props.data.line.map(element => (
                             <tr key={element.Id}>
                                 <td>{element.Position}</td>
                                 <td>{element.Note}</td>
@@ -123,7 +130,7 @@ const ShowConnectionTable = (props) => {
                                 <td>{element.FieldTo}</td>
                                 <td>{element.NrTo}</td>
                                 <td>{element.KlTo}</td>
-                                <td>{element.Comment}</td>
+                                <td className="comment"><p>{element.Comment}</p></td>
                             </tr>
                         )) : null}
                     </tbody>

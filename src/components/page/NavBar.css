@@ -4,14 +4,13 @@
     display: flex;
     position: fixed;
     top: 0;
-    /* z-index: 1; */
+    z-index: 1;
     width: 100%;
     height: 55px;
     justify-content: center;
 }
 
 .NavBar {
-    /* background-color: #2685c4; */
     background-color: #004369;
     display: flex;
     justify-content: space-between;
@@ -36,9 +35,7 @@
 
 .NavBar a {
     text-decoration: none;
-    /* color: #9DDDFF; */
     color: #fff;
-    /* font-size: 1.4rem; */
     margin-bottom: 0;
 }
 
@@ -57,6 +54,20 @@
     font-size: 0.6rem;
     margin: 0;
     padding-top: 0.3em;
+    color: #fff;
+}
+
+.userInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.userInfo p {
+    font-size: 0.6rem;
+    margin: 0;
+    padding-top: 0.3em;
+    color: #fff;
 }
 
 .add svg {
@@ -64,7 +75,6 @@
 }
 
 .App-logo {
-  /* width: 40px; */
   margin: 0.5em;
   pointer-events: none;
 }
@@ -80,12 +90,24 @@
     margin: 0.5rem;
 }
 
+.connectionNavBar {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.connectionNavBar a {
+    padding: 0.5em;
+    text-decoration: none;
+    margin-bottom: 0;
+}
+
 @media screen and (max-width: 700px) {
     .NavBar a {
         font-size: 1rem;
     }
     .navBtn p {
-        /* display: none; */
         font-size: 0.6rem;
     }
 
@@ -93,14 +115,17 @@
         width: 100%;
     }
 
-    /* .NavBar {
-        top: initial;
-        bottom: 0;
-        z-index: 1;
-    } */
-
     .logoText p {
         display: none;
+    }
+
+    .connectionNavBar {
+        justify-content: initial;
+        flex-direction: column;
+    }
+
+    .connectionNavBar a {
+        margin-bottom: 0.5rem;
     }
 }
 

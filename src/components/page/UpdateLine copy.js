@@ -223,7 +223,7 @@ class UpdateLine extends Component {
                         </div>
                     </div>
                     <div>
-                        <table className="table table-stacked">
+                        <table className="table table-scroll table-stacked">
                             <thead>
                                 <tr>
                                     <th>Rad</th>
@@ -247,7 +247,7 @@ class UpdateLine extends Component {
                                         ?
                                         <tr>
                                             <td>
-                                                <div className="tableContainer">
+                                                <div className="tableContaier">
                                                     <input
                                                         className="rowNumber"
                                                         min="0"
@@ -262,47 +262,108 @@ class UpdateLine extends Component {
                                                 {this.tableInputTextArea(
                                                     "Note", element.Note, idx
                                                 )}
+                                                {/* <div className="tableContaier">
+                                                    <textarea
+                                                        maxLength="100"
+                                                        type="text"
+                                                        name="Note"
+                                                        className="commentInput"
+                                                        value={element.Note}
+                                                        onChange={this.handleChange(idx)}
+                                                    />
+                                                </div> */}
                                             </td>
                                             <td>
-                                                {this.tableInput(
-                                                    "Rack", element.Rack, idx
-                                                )}
+                                                <div className="tableContainer">
+                                                    <input
+                                                        maxLength="50"
+                                                        type="text"
+                                                        name="Rack"
+                                                        value={element.Rack}
+                                                        onChange={this.handleChange(idx)}
+                                                    />
+                                                </div>
                                             </td>
                                             <td>
-                                                {this.tableInput(
-                                                    "FieldFrom", element.FieldFrom, idx
-                                                )}
+                                                <div className="tableContainer">
+                                                    <input
+                                                        maxLength="50"
+                                                        type="text"
+                                                        name="FieldFrom"
+                                                        value={element.FieldFrom}
+                                                        onChange={this.handleChange(idx)}
+                                                    />
+                                                </div>
                                             </td>
                                             <td>
-                                                {this.tableInput(
-                                                    "NrFrom", element.NrFrom, idx
-                                                )}
+                                                <div className="tableContainer">
+                                                    <input
+                                                        maxLength="50"
+                                                        type="text"
+                                                        name="NrFrom"
+                                                        value={element.NrFrom}
+                                                        onChange={this.handleChange(idx)}
+                                                    />
+                                                </div>
                                             </td>
                                             <td>
-                                                {this.tableInput(
-                                                    "KlFrom", element.KlFrom, idx
-                                                )}
+                                                <div className="tableContainer">
+                                                    <input
+                                                        maxLength="50"
+                                                        type="text"
+                                                        name="KlFrom"
+                                                        value={element.KlFrom}
+                                                        onChange={this.handleChange(idx)}
+                                                    />
+                                                </div>
                                             </td>
                                             <td className="arrow">--&gt;</td>
                                             <td>
-                                                {this.tableInput(
-                                                    "FieldTo", element.FieldTo, idx
-                                                )}
+                                                <div className="tableContainer">
+                                                    <input
+                                                        maxLength="50"
+                                                        type="text"
+                                                        name="FieldTo"
+                                                        value={element.FieldTo}
+                                                        onChange={this.handleChange(idx)}
+                                                    />
+                                                </div>
                                             </td>
                                             <td>
-                                                {this.tableInput(
-                                                    "NrTo", element.NrTo, idx
-                                                )}
+                                                <div className="tableContainer">
+                                                    <input
+                                                        maxLength="50"
+                                                        type="text"
+                                                        name="NrTo"
+                                                        value={element.NrTo}
+                                                        onChange={this.handleChange(idx)}
+                                                    />
+                                                </div>
                                             </td>
                                             <td>
-                                                {this.tableInput(
-                                                    "KlTo", element.KlTo, idx
-                                                )}
+                                                <div className="tableContainer">
+                                                    <input
+                                                        maxLength="50"
+                                                        type="text"
+                                                        name="KlTo"
+                                                        value={element.KlTo}
+                                                        onChange={this.handleChange(idx)}
+                                                    />
+                                                </div>
                                             </td>
                                             <td>
                                                 {this.tableInputTextArea(
                                                     "Comment", element.Comment, idx
                                                 )}
+                                                {/* <div className="tableContainer">
+                                                    <textarea
+                                                        maxLength="100"
+                                                        name="Comment"
+                                                        className="commentInput"
+                                                        value={element.Comment}
+                                                        onChange={this.handleChange(idx)}
+                                                    />
+                                                </div> */}
                                             </td>
                                             <td>
                                                 <button
@@ -310,6 +371,8 @@ class UpdateLine extends Component {
                                                     value={element.Id}
                                                     onClick={this.submitHandler}
                                                 >Spara</button>
+                                            </td>
+                                            <td>
                                                 <div className="smallDeleteButton">
                                                     <Link
                                                         to={
