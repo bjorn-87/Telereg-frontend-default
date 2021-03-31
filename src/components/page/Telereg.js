@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import DateFormatter from '../content/DateFormatter';
 import config from '../../config';
 import Auth from '../auth/Auth';
+import ReactPaginate from 'react-paginate';
 import './Telereg.css';
 
 class Telereg extends Component {
@@ -12,22 +13,36 @@ class Telereg extends Component {
         this.getContent = this.getContent.bind(this);
         this.changeHandler = this.changeHandler.bind(this);
         this.submitHandler = this.submitHandler.bind(this);
-        this.clickHandler = this.clickHandler.bind(this);
+        this.resetClick = this.resetClick.bind(this);
+        this.handlePageClick = this.handlePageClick.bind(this);
 
         this.state = {
             data: {},
             error: "",
+            pageCount: 0,
+            limit: 50,
+            offset: 0,
             isloaded: false,
             search: ""
         };
     }
 
     componentDidMount() {
-        this.getContent(`${this.baseUrl}headers`);
+        this.getContent("default");
     }
 
-    async getContent(url) {
+    async getContent(type) {
         const token = await Auth.GetToken();
+
+        let url;
+
+        if (type === "paginate") {
+            url = `${this.baseUrl}headers?offset=${this.state.offset}&limit=${this.state.limit}`;
+        } else if (type === "search") {
+            url = `${this.baseUrl}headers/search?search=${this.state.search}`;
+        } else {
+            url = `${this.baseUrl}headers`;
+        }
 
         fetch(url, {
             method: 'GET',
@@ -41,6 +56,7 @@ class Telereg extends Component {
                 if (res.data) {
                     this.setState({
                         data: res.data,
+                        pageCount: res.total ? Math.ceil(res.total / this.state.limit) : 0,
                         isloaded: true
                     });
                 } else if (res.errors) {
@@ -50,26 +66,35 @@ class Telereg extends Component {
     }
 
     submitHandler(event) {
-        let url = "";
+        let type = "";
 
         if (this.state.search) {
-            url = `${this.baseUrl}headers/search?search=${this.state.search}`;
+            type = "search";
         } else {
-            url = `${this.baseUrl}headers/`;
+            type = "default";
         }
-        this.getContent(url);
+
+        this.getContent(type);
         event.preventDefault();
     }
 
-    clickHandler(event) {
-        let url = `${this.baseUrl}headers`;
-
+    resetClick(event) {
         this.setState({
             search: ""
         });
 
-        this.getContent(url);
+        this.getContent("default");
         event.preventDefault();
+    }
+
+    handlePageClick(data) {
+        let selected = data.selected;
+
+        let offset = Math.ceil(selected * this.state.limit);
+
+        this.setState({ offset: offset }, () => {
+            this.getContent("paginate");
+        });
     }
 
     changeHandler(event) {
@@ -86,7 +111,7 @@ class Telereg extends Component {
         const {data, isloaded} = this.state;
 
         if (!isloaded) {
-            return <div>Loading data...</div>;
+            return <div><h2>Loading data...</h2></div>;
         } else {
             return (
                 <main className="mainPage">
@@ -104,6 +129,20 @@ class Telereg extends Component {
                                 />
                                 <input type="submit" className="searchFieldSubmit" value="Sök"/>
                             </form>
+                            <div>
+                                <ReactPaginate
+                                    previousLabel={'previous'}
+                                    nextLabel={'next'}
+                                    breakLabel={'...'}
+                                    breakClassName={'break-me'}
+                                    pageCount={this.state.pageCount}
+                                    marginPagesDisplayed={2}
+                                    pageRangeDisplayed={4}
+                                    onPageChange={this.handlePageClick}
+                                    containerClassName={'pagination'}
+                                    activeClassName={'active'}
+                                />
+                            </div>
                         </div>
                         <div className="startPage">
                             {data.length > 0 ? data.map(element => (
@@ -154,7 +193,7 @@ class Telereg extends Component {
                                     <h3 className="noResult">Inga resultat</h3>
                                     <p
                                         className="clearSearch"
-                                        onClick={this.clickHandler}
+                                        onClick={this.resetClick}
                                     >
                                         Rensa sökning
                                     </p>

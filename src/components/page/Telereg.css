@@ -120,6 +120,24 @@
     cursor: pointer;
 }
 
+.pagination {
+    display: block;
+    padding-left: 15px;
+    padding-right: 15px;
+    border: 1px solid;
+}
+
+.pagination li {
+    display: inline-block;
+    cursor: pointer;
+    margin: 0.5rem;
+    padding: 0.5rem;
+}
+
+.pagination .active {
+    border: 1px solid black;
+}
+
 @media screen and (max-width: 800px) {
     .rowDiv {
         flex-direction: column;
