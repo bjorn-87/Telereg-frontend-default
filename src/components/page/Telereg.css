@@ -66,7 +66,6 @@
     margin-bottom: 1.4rem;
     box-shadow: 0 3px 5px 0 #999;
     border-radius: 0.5rem;
-    
 }
 
 .linkDiv {
@@ -120,11 +119,17 @@
     cursor: pointer;
 }
 
+.paginateContainer ul{
+    display: block;
+    text-align: center;
+}
+
 .pagination {
     display: block;
     padding-left: 15px;
     padding-right: 15px;
-    border: 1px solid;
+    margin: 0 auto;
+    /* border: 1px solid; */
 }
 
 .pagination li {
@@ -132,10 +137,25 @@
     cursor: pointer;
     margin: 0.5rem;
     padding: 0.5rem;
+    width: 20px;
+    text-align: center;
+}
+
+.pagination a {
+    text-decoration: none;
+    color: #004369;
+}
+
+.pagination .next,
+.pagination .previous {
+    border: 2px solid #004369;
+    border-radius: 50%;
+    /* font-size: 1.5rem; */
 }
 
 .pagination .active {
-    border: 1px solid black;
+    border: 2px solid #004369;
+    border-radius: 50%;
 }
 
 @media screen and (max-width: 800px) {

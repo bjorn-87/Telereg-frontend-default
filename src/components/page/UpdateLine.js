@@ -34,7 +34,7 @@ class UpdateLine extends Component {
     }
 
     componentDidMount() {
-        this.getContent(`${this.url}connections/${this.id}`);
+        this.getContent(`${this.url}connections/id/${this.id}`);
     }
 
     async getContent(url) {
@@ -95,7 +95,7 @@ class UpdateLine extends Component {
         })
             .then((response) => response)
             .then(() => {
-                this.getContent(`${this.url}connections/${this.id}`);
+                this.getContent(`${this.url}connections/id/${this.id}`);
             });
 
         this.setState({
@@ -184,7 +184,7 @@ class UpdateLine extends Component {
                         <Link
                             to={`/new/line/${encodeURIComponent(this.id)}`}
                             className="blue-button"
-                        >Ny linje
+                        >Ny Kopplinspunkt
                         </Link>
                     </div>
                     <div className="headerDataLine">
@@ -208,6 +208,9 @@ class UpdateLine extends Component {
                         </div>
                         <div className="headerBlock">
                             <h5>Användare:</h5><p>{this.state.head.UserFullName}</p>
+                        </div>
+                        <div className="headerBlock">
+                            <h5>Kontaktperson:</h5><p>{this.state.head.Contact}</p>
                         </div>
                         <div className="headerBlock">
                             <h5>Dokument:</h5><p>{this.state.head.Document}</p>

@@ -6,6 +6,7 @@ import {
 import NavBar from './components/page/NavBar.js';
 import Telereg from './components/page/Telereg.js';
 import './App.css';
+import Auth from './components/auth/Auth';
 import ShowConnection from './components/page/ShowConnection.js';
 import UpdateHead from './components/page/UpdateHeader.js';
 import UpdateLine from './components/page/UpdateLine.js';
@@ -13,8 +14,11 @@ import NewHeader from './components/page/NewHeader.js';
 import NewLine from './components/page/NewLine.js';
 import DeleteLine from './components/page/DeleteLine.js';
 import DeleteConnection from './components/page/DeleteConnection.js';
+import ShowReport from './components/page/ShowReport.js';
 
 function App() {
+    const user = Auth.GetUser();
+
     return (
         <Router>
             <div className="App">
@@ -23,6 +27,7 @@ function App() {
                 </header>
                 <div className="headerTitle">
                     <p>Teleregistret</p>
+                    <p className="loggedInUser">Inloggad: {user.name}</p>
                 </div>
                 <div className="App-body" >
                     <Route exact path="/" component={Telereg} />
@@ -33,6 +38,7 @@ function App() {
                     <Route path="/new/line/:id" component={NewLine} />
                     <Route path="/delete/line/:id/:back" component={DeleteLine} />
                     <Route path="/delete/connection/:id/" component={DeleteConnection} />
+                    <Route path="/report/" component={ShowReport} />
                 </div>
                 <footer className="pageFooter">
                     <p>&copy; LKAB | 2021 </p>

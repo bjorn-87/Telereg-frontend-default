@@ -66,7 +66,7 @@ class NewLine extends Component {
                         <button
                             className="createButton blue-button"
                             onClick={this.submitHandler}
-                        >Skapa linje
+                        >Skapa kopplingspunkt
                         </button>
                     </div>
                 </main>

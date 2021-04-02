@@ -23,6 +23,8 @@ class Telereg extends Component {
             limit: 50,
             offset: 0,
             isloaded: false,
+            fetchType: "",
+            total: 0,
             search: ""
         };
     }
@@ -57,6 +59,8 @@ class Telereg extends Component {
                     this.setState({
                         data: res.data,
                         pageCount: res.total ? Math.ceil(res.total / this.state.limit) : 0,
+                        total: res.total ? res.total : 0,
+                        fetchType: type,
                         isloaded: true
                     });
                 } else if (res.errors) {
@@ -92,7 +96,7 @@ class Telereg extends Component {
 
         let offset = Math.ceil(selected * this.state.limit);
 
-        this.setState({ offset: offset }, () => {
+        this.setState({ offset: offset, search: "" }, () => {
             this.getContent("paginate");
         });
     }
@@ -108,7 +112,7 @@ class Telereg extends Component {
     }
 
     render() {
-        const {data, isloaded} = this.state;
+        const {data, isloaded, total, fetchType} = this.state;
 
         if (!isloaded) {
             return <div><h2>Loading data...</h2></div>;
@@ -123,26 +127,29 @@ class Telereg extends Component {
                                     className="searchField"
                                     type="text"
                                     name="search"
-                                    placeholder="Sök Nummer/namn"
+                                    placeholder="Sök nummer/namn/funktion/address"
                                     value={this.state.search}
                                     onChange={this.changeHandler}
                                 />
                                 <input type="submit" className="searchFieldSubmit" value="Sök"/>
                             </form>
-                            <div>
-                                <ReactPaginate
-                                    previousLabel={'previous'}
-                                    nextLabel={'next'}
-                                    breakLabel={'...'}
-                                    breakClassName={'break-me'}
-                                    pageCount={this.state.pageCount}
-                                    marginPagesDisplayed={2}
-                                    pageRangeDisplayed={4}
-                                    onPageChange={this.handlePageClick}
-                                    containerClassName={'pagination'}
-                                    activeClassName={'active'}
-                                />
-                            </div>
+                            {fetchType === "search" ?
+                                <p>{data.length} Sökresultat (Visas max: 100)</p> :
+                                <div className="paginateContainer">
+                                    <ReactPaginate
+                                        previousLabel={'<'}
+                                        nextLabel={'>'}
+                                        breakLabel={'...'}
+                                        breakClassName={'break-me'}
+                                        pageCount={this.state.pageCount}
+                                        marginPagesDisplayed={2}
+                                        pageRangeDisplayed={4}
+                                        onPageChange={this.handlePageClick}
+                                        containerClassName={'pagination'}
+                                        activeClassName={'active'}
+                                    />
+                                    <p>Totalt: {total} Rader</p>
+                                </div>}
                         </div>
                         <div className="startPage">
                             {data.length > 0 ? data.map(element => (

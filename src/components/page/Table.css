@@ -1,3 +1,4 @@
+.reportTable,
 .table {
     /* display: block; */
     box-sizing: border-box;
@@ -10,6 +11,7 @@
     border: 2px solid #004369;
 }
 
+.reportTable th,
 .table th {
     text-align: left;
     color: #fff;
@@ -20,6 +22,7 @@
     width: 150px;
     height: 20px;
 }
+
 .tableContainer input[type=text],
 .tableContainer .rowNumber {
     display: block;
@@ -27,12 +30,15 @@
     height: 20px;
 }
 
+.reportTable th,
+.reportTable td,
 .table th,
 .table td {
     padding: 0.2rem 0.3rem;
     border-bottom: 2px solid #004369;
 }
 
+.reportTable thead,
 .table thead {
     background-color: #004369;
 }
@@ -149,19 +155,41 @@
         background-color: #ddd;
     }
 
-    td:nth-of-type(1):before { content: "Rad"; }
-    td:nth-of-type(2):before { content: "Namn"; }
-    td:nth-of-type(3):before { content: "Ställ"; }
-    td:nth-of-type(4):before { content: "Från fält"; }
-    td:nth-of-type(5):before { content: "Från position"; }
-    td:nth-of-type(6):before { content: "Från uttag"; }
-    td:nth-of-type(7):before { content: ""; }
-    td:nth-of-type(8):before { content: "Till fält"; }
-    td:nth-of-type(9):before { content: "Till position"; }
-    td:nth-of-type(10):before { content: "Till uttag"; }
-    td:nth-of-type(11):before { content: "Kommentar"; }
+    .table td:nth-of-type(1):before { content: "Rad"; }
+    .table td:nth-of-type(2):before { content: "Namn"; }
+    .table td:nth-of-type(3):before { content: "Ställ"; }
+    .table td:nth-of-type(4):before { content: "Från fält"; }
+    .table td:nth-of-type(5):before { content: "Från position"; }
+    .table td:nth-of-type(6):before { content: "Från uttag"; }
+    .table td:nth-of-type(7):before { content: ""; }
+    .table td:nth-of-type(8):before { content: "Till fält"; }
+    .table td:nth-of-type(9):before { content: "Till position"; }
+    .table td:nth-of-type(10):before { content: "Till uttag"; }
+    .table td:nth-of-type(11):before { content: "Kommentar"; }
 
-    td:before {
+    .table td:before {
+        /* För att visa tabell rubrik */
+        /* content: attr(data-title); */
+        /* Använder top och left för efterlikna padding */
+        position: absolute;
+        left: 1rem;
+        width: 45%;
+        padding-right: 0.55rem;
+        white-space: nowrap;
+        text-align:left;
+        font-weight: bold;
+    }
+
+    .reportTable td:nth-of-type(1):before { content: "Ställ"; }
+    .reportTable td:nth-of-type(2):before { content: "Fält"; }
+    .reportTable td:nth-of-type(3):before { content: "Nr"; }
+    .reportTable td:nth-of-type(4):before { content: "Uttag"; }
+    .reportTable td:nth-of-type(5):before { content: "Nummer"; }
+    .reportTable td:nth-of-type(6):before { content: "Namn"; }
+    .reportTable td:nth-of-type(7):before { content: "Adress"; }
+    .reportTable td:nth-of-type(8):before { content: "Kommentar"; }
+
+    .reportTable td:before {
         /* För att visa tabell rubrik */
         /* content: attr(data-title); */
         /* Använder top och left för efterlikna padding */

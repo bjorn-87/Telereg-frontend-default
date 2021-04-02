@@ -93,6 +93,10 @@ const ShowConnectionTable = (props) => {
                         <p>{checkEmpty(props.data.head.UserFullName)}</p>
                     </div>
                     <div className="headerBlock">
+                        <h5>Kontaktperson:</h5>
+                        <p>{checkEmpty(props.data.head.Contact)}</p>
+                    </div>
+                    <div className="headerBlock">
                         <h5>Dokument:</h5>
                         <p>{checkEmpty(props.data.head.Document)}</p>
                     </div>

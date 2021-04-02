@@ -33,6 +33,7 @@ class UpdateHeader extends Component {
             Other: "",
             Updated: "",
             UserFullName: "",
+            Contact: "",
             UserId: "",
             head: {},
             line: {},
@@ -44,7 +45,7 @@ class UpdateHeader extends Component {
     }
 
     componentDidMount() {
-        this.getContent(`${this.url}connections/${this.id}`);
+        this.getContent(`${this.url}connections/id/${this.id}`);
     }
 
     async getContent(url) {
@@ -84,6 +85,7 @@ class UpdateHeader extends Component {
             Id,
             Name,
             Number,
+            Contact,
             Other } = this.state;
 
         const token = await Auth.GetToken();
@@ -100,6 +102,7 @@ class UpdateHeader extends Component {
             userid: this.user.userName,
             apptypetwo: ApptypeTwo,
             userfullname: this.user.name,
+            contact: Contact,
             other: Other,
         };
 
@@ -255,6 +258,16 @@ class UpdateHeader extends Component {
                         <div className="headerBlock">
                             <h5>AnvändarId:</h5>
                             <p>{this.state.UserId}</p>
+                        </div>
+                        <div className="headerBlock">
+                            <h5>Kontaktperson:</h5>
+                            <input
+                                maxLength="50"
+                                type="text"
+                                name="Contact"
+                                value={this.state.Contact}
+                                onChange={this.handleChange}
+                            />
                         </div>
                         <div className="headerBlock">
                             <h5>Övrigt:</h5>

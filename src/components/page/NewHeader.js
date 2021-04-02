@@ -26,6 +26,7 @@ class NewHeader extends Component {
             Func: "",
             UserFullName: this.user.name,
             UserId: this.user.userName,
+            Contact: "",
             Other: "",
             errors: "",
             search: "",
@@ -46,6 +47,7 @@ class NewHeader extends Component {
             Drawing,
             Func,
             UserFullName,
+            Contact,
             UserId,
             Other} = this.state;
 
@@ -59,6 +61,7 @@ class NewHeader extends Component {
             drawing: Drawing,
             func: Func,
             userfullname: UserFullName,
+            contact: Contact,
             userid: UserId,
             other: Other
         };
@@ -214,6 +217,16 @@ class NewHeader extends Component {
                         <div className="headerBlock">
                             <h5>AnvändarId:</h5>
                             <p>{this.state.UserId}</p>
+                        </div>
+                        <div className="headerBlock">
+                            <h5>Kontaktperson:</h5>
+                            <input
+                                maxLength="50"
+                                type="text"
+                                name="Contact"
+                                value={this.state.Contact}
+                                onChange={this.handleChange}
+                            />
                         </div>
                         <div className="headerBlock">
                             <h5>Övrigt:</h5>
