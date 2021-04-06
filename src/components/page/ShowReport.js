@@ -59,9 +59,6 @@ class Showreport extends Component {
     submitHandler(event) {
         const { Rack, Field } = this.state;
 
-        console.log(Rack);
-        console.log(Field);
-
         this.getContent(`${this.url}?rack=${Rack}&field=${Field}`);
         event.preventDefault();
     }
@@ -70,9 +67,6 @@ class Showreport extends Component {
         const {data, isloaded} = this.state;
 
         let key = 0;
-
-        console.log(data);
-        console.log(isloaded);
 
         return (
             <main className="mainPage">

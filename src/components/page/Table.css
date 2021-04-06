@@ -51,7 +51,6 @@
 
 .commentInput {
     resize: vertical;
-    /* border: 1px solid black; */
 }
 
 .commentInput:focus {
@@ -194,13 +193,11 @@
         /* content: attr(data-title); */
         /* Använder top och left för efterlikna padding */
         position: absolute;
-        /* top: 1rem; */
         left: 1rem;
         width: 45%;
         padding-right: 0.55rem;
         white-space: nowrap;
         text-align:left;
         font-weight: bold;
-        /* // top: 0.33rem; */
     }
 }

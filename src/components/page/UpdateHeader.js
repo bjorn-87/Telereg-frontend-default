@@ -253,11 +253,23 @@ class UpdateHeader extends Component {
                         </div>
                         <div className="headerBlock">
                             <h5>Användare:</h5>
-                            <p>{this.state.UserFullName}</p>
+                            <input
+                                readOnly
+                                placeholder="Namn (Automatiskt)"
+                                className="grayedOut"
+                                type="text"
+                                value={this.state.UserFullName}
+                            />
                         </div>
                         <div className="headerBlock">
                             <h5>AnvändarId:</h5>
-                            <p>{this.state.UserId}</p>
+                            <input
+                                readOnly
+                                placeholder="E-post (automatiskt)"
+                                className="grayedOut"
+                                type="text"
+                                value={this.state.UserId}
+                            />
                         </div>
                         <div className="headerBlock">
                             <h5>Kontaktperson:</h5>
@@ -282,6 +294,7 @@ class UpdateHeader extends Component {
                         </div>
                         <div className="headerBlock">
                             <input
+                                className="saveButton blue-button headerButton"
                                 type="submit"
                                 value="Spara"
                             />

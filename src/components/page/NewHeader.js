@@ -133,6 +133,7 @@ class NewHeader extends Component {
                             <h5>Nummer:</h5>
                             <input
                                 required
+                                placeholder="Nummer krävs"
                                 maxLength="50"
                                 type="text"
                                 name="Number"
@@ -144,6 +145,7 @@ class NewHeader extends Component {
                             <h5>Namn:</h5>
                             <input
                                 maxLength="50"
+                                placeholder="Optionellt"
                                 type="text"
                                 name="Name"
                                 value={this.state.Name}
@@ -154,6 +156,7 @@ class NewHeader extends Component {
                             <h5>Typ:</h5>
                             <input
                                 maxLength="50"
+                                placeholder="Optionellt"
                                 type="text"
                                 name="Apptype"
                                 value={this.state.Apptype}
@@ -164,6 +167,7 @@ class NewHeader extends Component {
                             <h5>Typ2:</h5>
                             <input
                                 maxLength="50"
+                                placeholder="Optionellt"
                                 type="text"
                                 name="ApptypeTwo"
                                 value={this.state.ApptypeTwo}
@@ -174,6 +178,7 @@ class NewHeader extends Component {
                             <h5>Dokument:</h5>
                             <input
                                 maxLength="50"
+                                placeholder="Optionellt"
                                 type="text"
                                 name="Document"
                                 value={this.state.Document}
@@ -184,6 +189,7 @@ class NewHeader extends Component {
                             <h5>Ritning:</h5>
                             <input
                                 maxLength="50"
+                                placeholder="Optionellt"
                                 type="text"
                                 name="Drawing"
                                 value={this.state.Drawing}
@@ -194,6 +200,7 @@ class NewHeader extends Component {
                             <h5>Funktion:</h5>
                             <input
                                 maxLength="50"
+                                placeholder="Optionellt"
                                 type="text"
                                 name="Func"
                                 value={this.state.Func}
@@ -204,6 +211,7 @@ class NewHeader extends Component {
                             <h5>Adress:</h5>
                             <input
                                 maxLength="50"
+                                placeholder="Optionellt"
                                 type="text"
                                 name="Address"
                                 value={this.state.Address}
@@ -212,16 +220,27 @@ class NewHeader extends Component {
                         </div>
                         <div className="headerBlock">
                             <h5>Användare:</h5>
-                            <p>{this.state.UserFullName}</p>
+                            <input
+                                readOnly
+                                className="grayedOut"
+                                type="text"
+                                value={this.state.UserFullName}
+                            />
                         </div>
                         <div className="headerBlock">
                             <h5>AnvändarId:</h5>
-                            <p>{this.state.UserId}</p>
+                            <input
+                                readOnly
+                                className="grayedOut"
+                                type="text"
+                                value={this.state.UserId}
+                            />
                         </div>
                         <div className="headerBlock">
                             <h5>Kontaktperson:</h5>
                             <input
                                 maxLength="50"
+                                placeholder="Optionellt"
                                 type="text"
                                 name="Contact"
                                 value={this.state.Contact}
@@ -232,6 +251,7 @@ class NewHeader extends Component {
                             <h5>Övrigt:</h5>
                             <textarea
                                 maxLength="100"
+                                placeholder="Optionellt"
                                 type="text"
                                 name="Other"
                                 className="other"
@@ -241,6 +261,7 @@ class NewHeader extends Component {
                         </div>
                         <div className="headerBlock">
                             <input
+                                className="saveButton blue-button headerButton"
                                 type="submit"
                                 value="Spara"
                             />

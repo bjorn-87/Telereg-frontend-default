@@ -11,7 +11,6 @@ class DeleteLine extends Component {
 
         this.url = `${config.baseUrl}lines`;
         this.submitHandler = this.submitHandler.bind(this);
-        console.log(this.props);
         this.state = {
             Id: props.match.params.id,
             back: props.match.params.back,
@@ -37,7 +36,6 @@ class DeleteLine extends Component {
         })
             .then((response) => response)
             .then((res) => {
-                console.log(res);
                 if (res.ok) {
                     this.setState({
                         redirect: true
@@ -51,8 +49,6 @@ class DeleteLine extends Component {
             redirect,
             back,
         } = this.state;
-
-        console.log(this.state);
 
         if (redirect) {
             return <Redirect to={`/update/line/${back}`}/>;

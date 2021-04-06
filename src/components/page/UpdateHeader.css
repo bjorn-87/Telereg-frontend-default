@@ -12,3 +12,20 @@
     padding-left: 0.5rem;
     width: 300px;
 }
+
+.headerBlock input[type=text],
+.headerBlock textarea {
+    padding: 0.5rem;
+}
+
+.headerBlock textarea {
+    resize: vertical;
+}
+
+.headerBlock textarea:focus {
+    height: 5rem;
+}
+
+.grayedOut {
+    background-color: #ddd;
+}

@@ -5,6 +5,8 @@ import config from '../../config';
 import Auth from '../auth/Auth';
 import ReactPaginate from 'react-paginate';
 import './Telereg.css';
+// import Before from '../../icons/1x/outline_navigate_before_black_24dp.png';
+// import Next from '../../icons/1x/outline_navigate_next_black_24dp.png';
 
 class Telereg extends Component {
     constructor(props) {
@@ -25,7 +27,8 @@ class Telereg extends Component {
             isloaded: false,
             fetchType: "",
             total: 0,
-            search: ""
+            search: "",
+            hasSearched: false
         };
     }
 
@@ -74,8 +77,10 @@ class Telereg extends Component {
 
         if (this.state.search) {
             type = "search";
+            this.setState({hasSearched: true});
         } else {
             type = "default";
+            this.setState({hasSearched: false});
         }
 
         this.getContent(type);
@@ -84,7 +89,8 @@ class Telereg extends Component {
 
     resetClick(event) {
         this.setState({
-            search: ""
+            search: "",
+            hasSearched: false
         });
 
         this.getContent("default");
@@ -112,7 +118,7 @@ class Telereg extends Component {
     }
 
     render() {
-        const {data, isloaded, total, fetchType} = this.state;
+        const {data, isloaded, total, fetchType, hasSearched} = this.state;
 
         if (!isloaded) {
             return <div><h2>Loading data...</h2></div>;
@@ -131,6 +137,15 @@ class Telereg extends Component {
                                     value={this.state.search}
                                     onChange={this.changeHandler}
                                 />
+                                {hasSearched ?
+                                    <button
+                                        className="clearSearch"
+                                        onClick={this.resetClick}
+                                    >
+                                        Rensa sökning
+                                    </button>
+                                    : null
+                                }
                                 <input type="submit" className="searchFieldSubmit" value="Sök"/>
                             </form>
                             {fetchType === "search" ?
@@ -140,10 +155,12 @@ class Telereg extends Component {
                                         previousLabel={'<'}
                                         nextLabel={'>'}
                                         breakLabel={'...'}
+                                        previousLinkClassName={'previousLink'}
+                                        nextLinkClassName={'nextLink'}
                                         breakClassName={'break-me'}
                                         pageCount={this.state.pageCount}
-                                        marginPagesDisplayed={2}
-                                        pageRangeDisplayed={4}
+                                        marginPagesDisplayed={1}
+                                        pageRangeDisplayed={2}
                                         onPageChange={this.handlePageClick}
                                         containerClassName={'pagination'}
                                         activeClassName={'active'}
@@ -198,12 +215,6 @@ class Telereg extends Component {
                                 :
                                 <div>
                                     <h3 className="noResult">Inga resultat</h3>
-                                    <p
-                                        className="clearSearch"
-                                        onClick={this.resetClick}
-                                    >
-                                        Rensa sökning
-                                    </p>
                                 </div>
                             }
                         </div>

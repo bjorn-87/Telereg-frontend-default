@@ -69,7 +69,8 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-## Dependencies
-msal  
-react-aad-msal
-image from material-ui opensource
+## External Dependencies
+[msal](https://www.npmjs.com/package/msal) 
+[react-aad-msal](https://www.npmjs.com/package/react-aad-msal)
+[react-paginate](https://www.npmjs.com/package/react-paginate)
+Icons from material icons (google fonts opensource) [https://fonts.google.com/icons](https://fonts.google.com/icons)

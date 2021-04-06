@@ -5,7 +5,6 @@ import {
 } from 'react-router-dom';
 import NavBar from './components/page/NavBar.js';
 import Telereg from './components/page/Telereg.js';
-import './App.css';
 import Auth from './components/auth/Auth';
 import ShowConnection from './components/page/ShowConnection.js';
 import UpdateHead from './components/page/UpdateHeader.js';
@@ -15,6 +14,8 @@ import NewLine from './components/page/NewLine.js';
 import DeleteLine from './components/page/DeleteLine.js';
 import DeleteConnection from './components/page/DeleteConnection.js';
 import ShowReport from './components/page/ShowReport.js';
+import ScrollArrow from './components/content/ScrollArrow.js';
+import './App.css';
 
 function App() {
     const user = Auth.GetUser();
@@ -39,7 +40,9 @@ function App() {
                     <Route path="/delete/line/:id/:back" component={DeleteLine} />
                     <Route path="/delete/connection/:id/" component={DeleteConnection} />
                     <Route path="/report/" component={ShowReport} />
+                    <ScrollArrow/>
                 </div>
+                <div className="footerBorder"></div>
                 <footer className="pageFooter">
                     <p>&copy; LKAB | 2021 </p>
                 </footer>
