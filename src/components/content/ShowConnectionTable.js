@@ -5,8 +5,6 @@ import '../page/ShowConnection.css';
 import '../page/Table.css';
 
 const ShowConnectionTable = (props) => {
-    // const props.data = props.data;
-
     function checkEmpty(input) {
         if (input) {
             return input;

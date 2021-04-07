@@ -2,9 +2,23 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Installation
+1. Clone repo
+2. Navigate to folder containing repo and run commando `npm install`
+3. Edit file `src/template_authProvider.js` and rename it to `authprovider.js`
+4. Edit file `src/template_config.js` and rename it to `config.js`
+
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `npm run https`
+
+Runs the app in the development mode with https.\
+Open [https://localhost:3000](https://localhost:3000) to view it in the browser.
+
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
 
 ### `npm start`
 
@@ -69,8 +83,8 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-## External Dependencies
-[msal](https://www.npmjs.com/package/msal) 
-[react-aad-msal](https://www.npmjs.com/package/react-aad-msal)
-[react-paginate](https://www.npmjs.com/package/react-paginate)
-Icons from material icons (google fonts opensource) [https://fonts.google.com/icons](https://fonts.google.com/icons)
+## External Dependencies  
+[msal](https://www.npmjs.com/package/msal)  
+[react-aad-msal](https://www.npmjs.com/package/react-aad-msal)  
+[react-paginate](https://www.npmjs.com/package/react-paginate)  
+Icons from material icons (google fonts opensource) [https://fonts.google.com/icons](https://fonts.google.com/icons)  

@@ -1,5 +1,3 @@
-
-  
 .scrollTop {
     display: flex;
     position: fixed; 
@@ -18,11 +16,11 @@
 .scrollTop img {
     justify-self: center;
 }
-  
+
 .scrollTop:hover{
     opacity: 1;
 }
-  
+
 @keyframes fadeIn {
     0% {
       opacity: 0;
