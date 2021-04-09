@@ -17,6 +17,8 @@ class Showreport extends Component {
             data: [],
             Field: "",
             Rack: "",
+            NrTo: "",
+            NrFrom: "",
             error: "",
             isloaded: false,
             search: ""
@@ -57,9 +59,9 @@ class Showreport extends Component {
     }
 
     submitHandler(event) {
-        const { Rack, Field } = this.state;
+        const { Rack, Field, NrFrom, NrTo } = this.state;
 
-        this.getContent(`${this.url}?rack=${Rack}&field=${Field}`);
+        this.getContent(`${this.url}?rack=${Rack}&field=${Field}&nrfrom=${NrFrom}&nrto=${NrTo}`);
         event.preventDefault();
     }
 
@@ -96,6 +98,24 @@ class Showreport extends Component {
                             value={this.state.Field}
                             onChange={this.changeHandler}
                         />
+                        <label htmlFor="NrFrom">Från nummer:</label>
+                        <input
+                            id="NrFrom"
+                            type="text"
+                            name="NrFrom"
+                            placeholder="Från"
+                            value={this.state.NrFrom}
+                            onChange={this.changeHandler}
+                        />
+                        <label htmlFor="NrTo">Till nummer:</label>
+                        <input
+                            id="NrTo"
+                            type="text"
+                            name="NrTo"
+                            placeholder="Till"
+                            value={this.state.NrTo}
+                            onChange={this.changeHandler}
+                        />
                         <input
                             className="createButton"
                             type="submit"
@@ -127,7 +147,7 @@ class Showreport extends Component {
                                     <td>{element.Number}</td>
                                     <td>{element.Name}</td>
                                     <td>{element.Address}</td>
-                                    <td>{element.Other}</td>
+                                    <td>{element.Comment}</td>
                                 </tr>
                             )) : null}
                         </tbody>

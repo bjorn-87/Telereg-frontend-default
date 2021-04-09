@@ -5,8 +5,6 @@ import config from '../../config';
 import Auth from '../auth/Auth';
 import ReactPaginate from 'react-paginate';
 import './Telereg.css';
-// import Before from '../../icons/1x/outline_navigate_before_black_24dp.png';
-// import Next from '../../icons/1x/outline_navigate_next_black_24dp.png';
 
 class Telereg extends Component {
     constructor(props) {
@@ -121,7 +119,11 @@ class Telereg extends Component {
         const {data, isloaded, total, fetchType, hasSearched} = this.state;
 
         if (!isloaded) {
-            return <div><h2>Loading data...</h2></div>;
+            return (
+                <main className="mainPage">
+                    <h3 className="loading">Läser in data...</h3>
+                </main>
+            );
         } else {
             return (
                 <main className="mainPage">

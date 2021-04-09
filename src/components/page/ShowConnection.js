@@ -67,9 +67,17 @@ class ShowConnection extends Component {
         const {data, isloaded} = this.state;
 
         if (!isloaded) {
-            return <div className="loading"><h2>Loading data...</h2></div>;
+            return (
+                <main className="mainPage">
+                    <h3 className="loading">Läser in data...</h3>
+                </main>
+            );
         } else if (data.head.length === 0) {
-            return <div className="notFound"><h1>404 Page not found</h1></div>;
+            return (
+                <main className="mainPage">
+                    <div className="notFound"><h1>404 Page not found</h1></div>
+                </main>
+            );
         } else {
             return (
                 <ShowConnectionTable data={data}/>

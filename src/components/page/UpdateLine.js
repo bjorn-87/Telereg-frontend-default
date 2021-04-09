@@ -356,9 +356,17 @@ class UpdateLine extends Component {
                 </main>
             );
         } else if (isLoaded && !Id) {
-            return <div className="PageNotFound"><h2>404 PageNotFound</h2></div>;
+            return (
+                <main className="mainPage">
+                    <div className="PageNotFound"><h2>404 PageNotFound</h2></div>
+                </main>
+            );
         } else {
-            return <div className="loading"><h2>Loading data...</h2></div>;
+            return (
+                <main className="mainPage">
+                    <div className="loading"><h3>Läser in data...</h3></div>
+                </main>
+            );
         }
     }
 }
