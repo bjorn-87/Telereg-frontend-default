@@ -14,8 +14,6 @@
     line-height: 1.4;
     display: block;
     border: 1px solid #ccc;
-    border-top-left-radius: 0.5rem;
-    border-bottom-left-radius: 0.5rem;
     padding: 0.6rem;
     box-sizing: border-box;
     width: 90%;
@@ -32,6 +30,7 @@
     border: 1px solid #ccc;
     border-top-right-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
+    border-left: none;
     padding: 0.6rem;
     box-sizing: border-box;
     width: 10%;
@@ -43,14 +42,32 @@
 .clearSearch {
     cursor: pointer;
     line-height: 1.4;
+    font-size: 1.4rem;
     display: block;
     border: 1px solid #ccc;
     padding: 0.6rem;
     box-sizing: border-box;
-    width: 10%;
+    width: 50%;
+    margin: 0 auto;
+    resize: none;
+    text-align: center;
+}
+
+.searchSelect {
+    cursor: pointer;
+    line-height: 1.4;
+    font-size: 1rem;
+    display: block;
+    border: 1px solid #ccc;
+    padding: 0.6rem;
+    box-sizing: border-box;
+    width: 110px;
     margin: 1.4rem 0 1.4rem 0;
     resize: none;
     text-align: center;
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+    border-right: none;
 }
 
 
@@ -123,48 +140,46 @@
 }
 
 .paginateContainer ul{
-    display: block;
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #ccc;
 }
 
 .pagination {
-    display: block;
-    padding-left: 15px;
-    padding-right: 15px;
-    margin: 0 auto;
+    padding: 0;
 }
 
 .pagination li {
     display: inline-block;
     cursor: pointer;
-    margin: 0.5rem;
     padding: 0.5rem;
     width: 20px;
+    align-self: center;
     text-align: center;
 }
 
 .pagination a {
     text-decoration: none;
     color: #004369;
+    font-size: 1.4rem;
+}
+
+.next {
+    border-left: 1px solid #ccc;
+}
+
+.previous {
+    border-right: 1px solid #ccc;
 }
 
 .nextLink,
 .previousLink {
-    font-size: 1.5rem;
-    border: 2px solid #004369;
-    padding-bottom: 0.4rem;
-    padding-left: 0.6rem;
-    padding-right: 0.7rem;
-    border-radius: 50%;
-}
-
-.pagination .previous {
-    margin-right: 2rem;
+    height: 100%;
+    font-size: 1.4rem;
 }
 
 .pagination .active {
     border: 2px solid #004369;
-    border-radius: 50%;
 }
 
 @media screen and (max-width: 800px) {
@@ -203,5 +218,9 @@
 
     .searchFieldSubmit {
         width: 20%;
+    }
+
+    .clearSearch {
+        width: 100%;
     }
 }

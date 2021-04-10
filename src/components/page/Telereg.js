@@ -26,6 +26,7 @@ class Telereg extends Component {
             fetchType: "",
             total: 0,
             search: "",
+            selectValue: "number",
             hasSearched: false
         };
     }
@@ -42,7 +43,8 @@ class Telereg extends Component {
         if (type === "paginate") {
             url = `${this.baseUrl}headers?offset=${this.state.offset}&limit=${this.state.limit}`;
         } else if (type === "search") {
-            url = `${this.baseUrl}headers/search?search=${this.state.search}`;
+            url = `${this.baseUrl}headers/search?search=${this.state.search}` +
+                `&type=${this.state.selectValue}`;
         } else {
             url = `${this.baseUrl}headers`;
         }
@@ -130,26 +132,35 @@ class Telereg extends Component {
                     <div className="startPage">
                         <div className="searchBox">
                             <form onSubmit={this.submitHandler}>
+                                <select name="selectValue" value={this.state.selectValue}
+                                    onChange={this.changeHandler}
+                                    className="searchSelect"
+                                >
+                                    <option value="number">Nummer</option>
+                                    <option value="name">Namn</option>
+                                    <option value="function">Funktion</option>
+                                    <option value="address">Adress</option>
+                                </select>
                                 <input
                                     id="text"
                                     className="searchField"
                                     type="text"
                                     name="search"
-                                    placeholder="Sök nummer/namn/funktion/address"
+                                    placeholder="Sök kopplingskort"
                                     value={this.state.search}
                                     onChange={this.changeHandler}
                                 />
-                                {hasSearched ?
-                                    <button
-                                        className="clearSearch"
-                                        onClick={this.resetClick}
-                                    >
-                                        Rensa sökning
-                                    </button>
-                                    : null
-                                }
                                 <input type="submit" className="searchFieldSubmit" value="Sök"/>
                             </form>
+                            {hasSearched ?
+                                <button
+                                    className="clearSearch"
+                                    onClick={this.resetClick}
+                                >
+                                    Rensa sökning
+                                </button>
+                                : null
+                            }
                             {fetchType === "search" ?
                                 <p>{data.length} Sökresultat (Visas max: 100)</p> :
                                 <div className="paginateContainer">

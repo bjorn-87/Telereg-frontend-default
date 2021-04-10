@@ -11,6 +11,8 @@ import '../content/Buttons.css';
 class UpdateLine extends Component {
     constructor(props) {
         super(props);
+
+        this.user = Auth.GetUser();
         this.id = props.match.params.id;
         this.url = config.baseUrl;
         this.getContent = this.getContent.bind(this);
@@ -29,7 +31,9 @@ class UpdateLine extends Component {
             line: [],
             error: "",
             isLoaded: false,
-            search: ""
+            search: "",
+            UserFullName: this.user.name,
+            UserId: this.user.userName
         };
     }
 
@@ -82,7 +86,9 @@ class UpdateLine extends Component {
             fieldto: found.FieldTo,
             nrto: found.NrTo,
             klto: found.KlTo,
-            comment: found.Comment
+            comment: found.Comment,
+            userid: this.state.UserId,
+            userfullname: this.state.UserFullName
         };
 
         fetch(url, {
