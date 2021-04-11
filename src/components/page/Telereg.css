@@ -153,7 +153,6 @@
     display: inline-block;
     cursor: pointer;
     padding: 0.5rem;
-    width: 20px;
     align-self: center;
     text-align: center;
 }
@@ -174,8 +173,8 @@
 
 .nextLink,
 .previousLink {
-    height: 100%;
-    font-size: 1.4rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
 .pagination .active {
@@ -204,6 +203,10 @@
         padding: 0.3rem;
     }
 
+    .pagination a {
+        font-size: 1rem;
+    }
+
     .pagination .previous {
         margin-right: 1rem;
     }
@@ -214,13 +217,16 @@
 
     .searchField {
         width: 80%;
+        font-size: 1rem;
     }
 
     .searchFieldSubmit {
         width: 20%;
+        font-size: 1rem;
     }
 
     .clearSearch {
         width: 100%;
+        font-size: 1rem;
     }
 }

@@ -190,7 +190,7 @@ class UpdateLine extends Component {
                         <Link
                             to={`/new/line/${encodeURIComponent(this.id)}`}
                             className="blue-button"
-                        >Ny Kopplinspunkt
+                        >Ny Kopplingspunkt
                         </Link>
                     </div>
                     <div className="headerDataLine">

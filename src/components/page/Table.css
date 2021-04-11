@@ -1,6 +1,5 @@
 .reportTable,
 .table {
-    /* display: block; */
     box-sizing: border-box;
     border-collapse: collapse;
     font-size: 0.9em;
