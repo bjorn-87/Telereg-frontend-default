@@ -143,11 +143,11 @@ class UpdateLine extends Component {
         event.preventDefault();
     }
 
-    tableInputTextArea(name, element, idx) {
+    tableInputTextArea(name, element, idx, lenMax) {
         return (
             <div className="tableContainer">
                 <textarea
-                    maxLength="100"
+                    maxLength={lenMax}
                     name={name}
                     className="commentInput"
                     value={element}
@@ -269,7 +269,7 @@ class UpdateLine extends Component {
                                             </td>
                                             <td>
                                                 {this.tableInputTextArea(
-                                                    "Note", element.Note, idx
+                                                    "Note", element.Note, idx, "50"
                                                 )}
                                             </td>
                                             <td>
@@ -310,7 +310,7 @@ class UpdateLine extends Component {
                                             </td>
                                             <td>
                                                 {this.tableInputTextArea(
-                                                    "Comment", element.Comment, idx
+                                                    "Comment", element.Comment, idx, "100"
                                                 )}
                                             </td>
                                             <td>
