@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import config from '../../config';
 import PropTypes from 'prop-types';
 import Auth from '../auth/Auth';
+import DateFormatter from '../content/DateFormatter';
 import './UpdateLine.css';
 import './Table.css';
 import '../content/Buttons.css';
@@ -161,7 +162,8 @@ class UpdateLine extends Component {
         return (
             <div className="tableContainer">
                 <input
-                    maxLength="50"
+                    className="upper"
+                    maxLength="10"
                     type="text"
                     name={name}
                     value={element}
@@ -195,7 +197,7 @@ class UpdateLine extends Component {
                     </div>
                     <div className="headerDataLine">
                         <div className="headerBlock">
-                            <h5>Nummer:</h5><p>{this.state.head.Number}</p>
+                            <h5>Förbindelse:</h5><p>{this.state.head.Number}</p>
                         </div>
                         <div className="headerBlock">
                             <h5>Namn:</h5><p>{this.state.head.Name}</p>
@@ -207,25 +209,40 @@ class UpdateLine extends Component {
                             <h5>Funktion:</h5><p>{this.state.head.Func}</p>
                         </div>
                         <div className="headerBlock">
-                            <h5>Ritning:</h5><p>{this.state.head.Drawing}</p>
+                            <h5>Dokument:</h5><p>{this.state.head.Document}</p>
                         </div>
                         <div className="headerBlock">
                             <h5>Apptyp:</h5><p>{this.state.head.Apptype}</p>
                         </div>
                         <div className="headerBlock">
-                            <h5>Användare:</h5><p>{this.state.head.UserFullName}</p>
-                        </div>
-                        <div className="headerBlock">
-                            <h5>Kontaktperson:</h5><p>{this.state.head.Contact}</p>
-                        </div>
-                        <div className="headerBlock">
-                            <h5>Dokument:</h5><p>{this.state.head.Document}</p>
-                        </div>
-                        <div className="headerBlock">
                             <h5>Apptyp2:</h5><p>{this.state.head.ApptypeTwo}</p>
                         </div>
                         <div className="headerBlock">
+                            <h5>Ritning:</h5><p>{this.state.head.Drawing}</p>
+                        </div>
+                        <div className="headerBlock">
+                            <h5>Skapad:</h5>
+                            <p>
+                                <DateFormatter input={this.state.head.Created} type={"created"} />
+                            </p>
+                        </div>
+                        <div className="headerBlock">
+                            <h5>Uppdaterad:</h5>
+                            <p>
+                                <DateFormatter
+                                    input={this.state.head.Updated}
+                                    type={"updated"}
+                                />
+                            </p>
+                        </div>
+                        <div className="headerBlock">
+                            <h5>Användare:</h5><p>{this.state.head.UserFullName}</p>
+                        </div>
+                        <div className="headerBlock">
                             <h5>AnvändarId:</h5><p>{this.state.head.UserId}</p>
+                        </div>
+                        <div className="headerBlock">
+                            <h5>Kontaktperson:</h5><p>{this.state.head.Contact}</p>
                         </div>
                         <div className="headerBlock">
                             <h5>Övrigt:</h5><p>{this.state.head.Other}</p>
@@ -239,11 +256,11 @@ class UpdateLine extends Component {
                                     <th>Notering</th>
                                     <th>Ställ</th>
                                     <th>Fält</th>
-                                    <th>Position</th>
+                                    <th>Förbindelse</th>
                                     <th>Uttag</th>
                                     <th>          </th>
                                     <th>Fält</th>
-                                    <th>Position</th>
+                                    <th>Förbindelse</th>
                                     <th>Uttag</th>
                                     <th>Kommentar</th>
                                     <th></th>
@@ -332,20 +349,20 @@ class UpdateLine extends Component {
                                         <tr>
                                             <td>{element.Position}</td>
                                             <td>{element.Note}</td>
-                                            <td>{element.Rack}</td>
-                                            <td>{element.FieldFrom}</td>
-                                            <td>{element.NrFrom}</td>
-                                            <td>{element.KlFrom}</td>
+                                            <td className="upper">{element.Rack}</td>
+                                            <td className="upper">{element.FieldFrom}</td>
+                                            <td className="upper">{element.NrFrom}</td>
+                                            <td className="upper">{element.KlFrom}</td>
                                             <td className="arrow">--&gt;</td>
-                                            <td>{element.FieldTo}</td>
-                                            <td>{element.NrTo}</td>
-                                            <td>{element.KlTo}</td>
+                                            <td className="upper">{element.FieldTo}</td>
+                                            <td className="upper">{element.NrTo}</td>
+                                            <td className="upper">{element.KlTo}</td>
                                             <td className="comment">
                                                 <p>
                                                     {element.Comment}
                                                 </p>
                                             </td>
-                                            <td>
+                                            <td className="right">
                                                 <button
                                                     value={element.Id}
                                                     className="editButton blue-button"

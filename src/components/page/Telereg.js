@@ -6,6 +6,9 @@ import Auth from '../auth/Auth';
 import ReactPaginate from 'react-paginate';
 import './Telereg.css';
 
+/**
+ * Class to display front page with all Posts in Telereg
+ */
 class Telereg extends Component {
     constructor(props) {
         super(props);
@@ -15,6 +18,7 @@ class Telereg extends Component {
         this.submitHandler = this.submitHandler.bind(this);
         this.resetClick = this.resetClick.bind(this);
         this.handlePageClick = this.handlePageClick.bind(this);
+        this.pagination = this.pagination.bind(this);
 
         this.state = {
             data: {},
@@ -23,7 +27,6 @@ class Telereg extends Component {
             limit: 50,
             offset: 0,
             isloaded: false,
-            fetchType: "",
             total: 0,
             search: "",
             selectValue: "number",
@@ -32,9 +35,14 @@ class Telereg extends Component {
     }
 
     componentDidMount() {
+        window.scrollTo({top: 0});
         this.getContent("default");
     }
 
+    /**
+     * Method to get content from API
+     * @param {string} type Decides wich url to fetch from
+     */
     async getContent(type) {
         const token = await Auth.GetToken();
 
@@ -44,7 +52,8 @@ class Telereg extends Component {
             url = `${this.baseUrl}headers?offset=${this.state.offset}&limit=${this.state.limit}`;
         } else if (type === "search") {
             url = `${this.baseUrl}headers/search?search=${this.state.search}` +
-                `&type=${this.state.selectValue}`;
+                `&type=${this.state.selectValue}` +
+                `&offset=${this.state.offset}&limit=${this.state.limit}`;
         } else {
             url = `${this.baseUrl}headers`;
         }
@@ -63,7 +72,6 @@ class Telereg extends Component {
                         data: res.data,
                         pageCount: res.total ? Math.ceil(res.total / this.state.limit) : 0,
                         total: res.total ? res.total : 0,
-                        fetchType: type,
                         isloaded: true
                     });
                 } else if (res.errors) {
@@ -72,41 +80,65 @@ class Telereg extends Component {
             });
     }
 
+
+    /**
+     * Handles submit from searchfield
+     * @param {*} event
+     */
     submitHandler(event) {
         let type = "";
 
         if (this.state.search) {
             type = "search";
-            this.setState({hasSearched: true});
+            this.setState({hasSearched: true, offset: 0});
         } else {
             type = "default";
-            this.setState({hasSearched: false});
+            this.setState({hasSearched: false, offset: 0});
         }
 
         this.getContent(type);
         event.preventDefault();
     }
 
+    /**
+     * Method to clear previous search
+     * @param {*} event
+     */
     resetClick(event) {
         this.setState({
             search: "",
-            hasSearched: false
+            hasSearched: false,
+            offset: 0
         });
 
         this.getContent("default");
         event.preventDefault();
     }
 
+    /**
+     * Method to Handle pagination click
+     * @param {*} data Data from the react-pagination module.
+     */
     handlePageClick(data) {
         let selected = data.selected;
 
         let offset = Math.ceil(selected * this.state.limit);
 
-        this.setState({ offset: offset, search: "" }, () => {
-            this.getContent("paginate");
-        });
+        if (this.state.hasSearched) {
+            this.setState({ offset: offset }, () => {
+                this.getContent("search");
+            });
+        } else {
+            this.setState({ offset: offset, search: "" }, () => {
+                this.getContent("paginate");
+            });
+        }
     }
 
+    /**
+     * Handles changes from inputfield
+     * @param {*} event
+     */
     changeHandler(event) {
         const target = event.target;
         const value = target.value;
@@ -117,8 +149,35 @@ class Telereg extends Component {
         });
     }
 
+    /**
+     *
+     * @returns Pagination from react-pagainate module
+     */
+    pagination() {
+        return (
+            <ReactPaginate
+                previousLabel={'<'}
+                nextLabel={'>'}
+                breakLabel={'...'}
+                previousLinkClassName={'previousLink'}
+                nextLinkClassName={'nextLink'}
+                breakClassName={'break-me'}
+                pageCount={this.state.pageCount}
+                marginPagesDisplayed={1}
+                pageRangeDisplayed={2}
+                onPageChange={this.handlePageClick}
+                containerClassName={'pagination'}
+                activeClassName={'active'}
+            />
+        );
+    }
+
+    /**
+     *
+     * @returns Renders the page
+     */
     render() {
-        const {data, isloaded, total, fetchType, hasSearched} = this.state;
+        const {data, isloaded, total, hasSearched} = this.state;
 
         if (!isloaded) {
             return (
@@ -136,7 +195,7 @@ class Telereg extends Component {
                                     onChange={this.changeHandler}
                                     className="searchSelect"
                                 >
-                                    <option value="number">Nummer</option>
+                                    <option value="number">Förbindelse</option>
                                     <option value="name">Namn</option>
                                     <option value="function">Funktion</option>
                                     <option value="address">Adress</option>
@@ -161,25 +220,10 @@ class Telereg extends Component {
                                 </button>
                                 : null
                             }
-                            {fetchType === "search" ?
-                                <p>{data.length} Sökresultat (Visas max: 100)</p> :
-                                <div className="paginateContainer">
-                                    <ReactPaginate
-                                        previousLabel={'<'}
-                                        nextLabel={'>'}
-                                        breakLabel={'...'}
-                                        previousLinkClassName={'previousLink'}
-                                        nextLinkClassName={'nextLink'}
-                                        breakClassName={'break-me'}
-                                        pageCount={this.state.pageCount}
-                                        marginPagesDisplayed={1}
-                                        pageRangeDisplayed={2}
-                                        onPageChange={this.handlePageClick}
-                                        containerClassName={'pagination'}
-                                        activeClassName={'active'}
-                                    />
-                                    <p>Totalt: {total} Rader</p>
-                                </div>}
+                            <div className="paginateContainer">
+                                {this.pagination()}
+                                <p>Totalt: {total} Poster</p>
+                            </div>
                         </div>
                         <div className="startPage">
                             {data.length > 0 ? data.map(element => (
@@ -190,20 +234,20 @@ class Telereg extends Component {
                                 >
                                     <div className="rowDiv">
                                         <div className="columnDiv">
-                                            <h5>Nummer</h5>
-                                            <p>{element.Number}</p>
+                                            <h5>Förbindelse</h5>
+                                            <p className="upper">{element.Number}</p>
                                         </div>
                                         <div className="columnDiv">
                                             <h5>Namn</h5>
                                             <p>{element.Name ? element.Name : "n/a"}</p>
                                         </div>
                                         <div className="columnDiv">
-                                            <h5>Funktion</h5>
-                                            <p>{element.Func ? element.Func : "n/a"}</p>
-                                        </div>
-                                        <div className="columnDiv">
                                             <h5>Adress</h5>
                                             <p>{element.Address ? element.Address : "n/a"}</p>
+                                        </div>
+                                        <div className="columnDiv">
+                                            <h5>Funktion</h5>
+                                            <p>{element.Func ? element.Func : "n/a"}</p>
                                         </div>
                                         <div className="columnDiv">
                                             <h5>Skapad</h5>

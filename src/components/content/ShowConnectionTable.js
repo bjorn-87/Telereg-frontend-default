@@ -5,13 +5,6 @@ import '../page/ShowConnection.css';
 import '../page/Table.css';
 
 const ShowConnectionTable = (props) => {
-    function checkEmpty(input) {
-        if (input) {
-            return input;
-        }
-        return "n/a";
-    }
-
     if (props) {
         return (
             <main className="mainPage">
@@ -35,34 +28,38 @@ const ShowConnectionTable = (props) => {
                 </div>
                 <div className="headerData">
                     <div className="headerBlock">
-                        <h5>Nummer:</h5>
-                        <p>
+                        <h5>Förbindelse:</h5>
+                        <p className="upper">
                             {props.data.head.Number}
                         </p>
                     </div>
                     <div className="headerBlock">
                         <h5>Namn:</h5>
-                        <p>{checkEmpty(props.data.head.Name)}</p>
+                        <p>{props.data.head.Name}</p>
                     </div>
                     <div className="headerBlock">
                         <h5>Address:</h5>
-                        <p>{checkEmpty(props.data.head.Address)}</p>
+                        <p>{props.data.head.Address}</p>
                     </div>
                     <div className="headerBlock">
                         <h5>Funktion:</h5>
-                        <p>{checkEmpty(props.data.head.Func)}</p>
+                        <p>{props.data.head.Func}</p>
                     </div>
                     <div className="headerBlock">
-                        <h5>Ritning:</h5>
-                        <p>{checkEmpty(props.data.head.Drawing)}</p>
+                        <h5>Dokument:</h5>
+                        <p>{props.data.head.Document}</p>
                     </div>
                     <div className="headerBlock">
                         <h5>Apptyp:</h5>
-                        <p>{checkEmpty(props.data.head.Apptype)}</p>
+                        <p>{props.data.head.Apptype}</p>
                     </div>
                     <div className="headerBlock">
                         <h5>Apptyp2:</h5>
-                        <p>{checkEmpty(props.data.head.ApptypeTwo)}</p>
+                        <p>{props.data.head.ApptypeTwo}</p>
+                    </div>
+                    <div className="headerBlock">
+                        <h5>Ritning:</h5>
+                        <p>{props.data.head.Drawing}</p>
                     </div>
                     <div className="headerBlock">
                         <h5>Skapad:</h5>
@@ -73,34 +70,27 @@ const ShowConnectionTable = (props) => {
                     <div className="headerBlock">
                         <h5>Uppdaterad:</h5>
                         <p>
-                            {props.data.head.Updated ?
-                                <DateFormatter
-                                    input={props.data.head.Updated}
-                                    type={"updated"}
-                                />
-                                : "n/a"
-                            }
+                            <DateFormatter
+                                input={props.data.head.Updated}
+                                type={"updated"}
+                            />
                         </p>
                     </div>
                     <div className="headerBlock">
-                        <h5>Användarnamn:</h5>
-                        <p>{checkEmpty(props.data.head.UserId)}</p>
+                        <h5>Användare:</h5>
+                        <p>{props.data.head.UserFullName}</p>
                     </div>
                     <div className="headerBlock">
-                        <h5>Användare:</h5>
-                        <p>{checkEmpty(props.data.head.UserFullName)}</p>
+                        <h5>AnvändarId:</h5>
+                        <p>{props.data.head.UserId}</p>
                     </div>
                     <div className="headerBlock">
                         <h5>Kontaktperson:</h5>
-                        <p>{checkEmpty(props.data.head.Contact)}</p>
-                    </div>
-                    <div className="headerBlock">
-                        <h5>Dokument:</h5>
-                        <p>{checkEmpty(props.data.head.Document)}</p>
+                        <p>{props.data.head.Contact}</p>
                     </div>
                     <div className="headerBlock">
                         <h5>Övrigt:</h5>
-                        <p>{checkEmpty(props.data.head.Other)}</p>
+                        <p>{props.data.head.Other}</p>
                     </div>
                 </div>
                 <table className="table table-stacked">
@@ -110,11 +100,11 @@ const ShowConnectionTable = (props) => {
                             <th>Notering</th>
                             <th>Ställ</th>
                             <th>Fält</th>
-                            <th>Nummer</th>
+                            <th>Förbindelse</th>
                             <th>Uttag</th>
                             <th>          </th>
                             <th>Fält</th>
-                            <th>Nummer</th>
+                            <th>Förbindelse</th>
                             <th>Uttag</th>
                             <th>Kommentar</th>
                         </tr>
@@ -124,14 +114,14 @@ const ShowConnectionTable = (props) => {
                             <tr key={element.Id}>
                                 <td>{element.Position}</td>
                                 <td>{element.Note}</td>
-                                <td>{element.Rack}</td>
-                                <td>{element.FieldFrom}</td>
-                                <td>{element.NrFrom}</td>
-                                <td>{element.KlFrom}</td>
+                                <td className="upper">{element.Rack}</td>
+                                <td className="upper">{element.FieldFrom}</td>
+                                <td className="upper">{element.NrFrom}</td>
+                                <td className="upper">{element.KlFrom}</td>
                                 <td className="arrow">--&gt;</td>
-                                <td>{element.FieldTo}</td>
-                                <td>{element.NrTo}</td>
-                                <td>{element.KlTo}</td>
+                                <td className="upper">{element.FieldTo}</td>
+                                <td className="upper">{element.NrTo}</td>
+                                <td className="upper">{element.KlTo}</td>
                                 <td className="comment"><p>{element.Comment}</p></td>
                             </tr>
                         )) : null}

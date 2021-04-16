@@ -171,7 +171,7 @@ class UpdateHeader extends Component {
                     {error ? <h2>{error}</h2> : null}
                     <form className="headerDataHead" onSubmit={this.submitHandler}>
                         <div className="headerBlock">
-                            <h5>Nummer:</h5>
+                            <h5>Förbindelse:</h5>
                             <input
                                 required
                                 maxLength="50"
@@ -192,42 +192,12 @@ class UpdateHeader extends Component {
                             />
                         </div>
                         <div className="headerBlock">
-                            <h5>Typ:</h5>
+                            <h5>Adress:</h5>
                             <input
                                 maxLength="50"
                                 type="text"
-                                name="Apptype"
-                                value={this.state.Apptype}
-                                onChange={this.handleChange}
-                            />
-                        </div>
-                        <div className="headerBlock">
-                            <h5>Typ2:</h5>
-                            <input
-                                maxLength="50"
-                                type="text"
-                                name="ApptypeTwo"
-                                value={this.state.ApptypeTwo}
-                                onChange={this.handleChange}
-                            />
-                        </div>
-                        <div className="headerBlock">
-                            <h5>Document:</h5>
-                            <input
-                                maxLength="50"
-                                type="text"
-                                name="Document"
-                                value={this.state.Document}
-                                onChange={this.handleChange}
-                            />
-                        </div>
-                        <div className="headerBlock">
-                            <h5>Ritning:</h5>
-                            <input
-                                maxLength="50"
-                                type="text"
-                                name="Drawing"
-                                value={this.state.Drawing}
+                                name="Address"
+                                value={this.state.Address}
                                 onChange={this.handleChange}
                             />
                         </div>
@@ -242,12 +212,42 @@ class UpdateHeader extends Component {
                             />
                         </div>
                         <div className="headerBlock">
-                            <h5>Adress:</h5>
+                            <h5>Document:</h5>
                             <input
                                 maxLength="50"
                                 type="text"
-                                name="Address"
-                                value={this.state.Address}
+                                name="Document"
+                                value={this.state.Document}
+                                onChange={this.handleChange}
+                            />
+                        </div>
+                        <div className="headerBlock">
+                            <h5>AppTyp:</h5>
+                            <input
+                                maxLength="50"
+                                type="text"
+                                name="Apptype"
+                                value={this.state.Apptype}
+                                onChange={this.handleChange}
+                            />
+                        </div>
+                        <div className="headerBlock">
+                            <h5>AppTyp2:</h5>
+                            <input
+                                maxLength="50"
+                                type="text"
+                                name="ApptypeTwo"
+                                value={this.state.ApptypeTwo}
+                                onChange={this.handleChange}
+                            />
+                        </div>
+                        <div className="headerBlock">
+                            <h5>Ritning:</h5>
+                            <input
+                                maxLength="50"
+                                type="text"
+                                name="Drawing"
+                                value={this.state.Drawing}
                                 onChange={this.handleChange}
                             />
                         </div>
@@ -308,11 +308,11 @@ class UpdateHeader extends Component {
                                     <th>Notering</th>
                                     <th>Ställ</th>
                                     <th>Fält</th>
-                                    <th>Nummer</th>
+                                    <th>Förbindelse</th>
                                     <th>Uttag</th>
                                     <th>          </th>
                                     <th>Fält</th>
-                                    <th>Nummer</th>
+                                    <th>Förbindelse</th>
                                     <th>Uttag</th>
                                     <th>Kommentar</th>
                                 </tr>
@@ -322,14 +322,14 @@ class UpdateHeader extends Component {
                                     <tr key={element.Id}>
                                         <td>{element.Position}</td>
                                         <td>{element.Note}</td>
-                                        <td>{element.Rack}</td>
-                                        <td>{element.FieldFrom}</td>
-                                        <td>{element.NrFrom}</td>
-                                        <td>{element.KlFrom}</td>
+                                        <td className="upper">{element.Rack}</td>
+                                        <td className="upper">{element.FieldFrom}</td>
+                                        <td className="upper">{element.NrFrom}</td>
+                                        <td className="upper">{element.KlFrom}</td>
                                         <td>--&gt;</td>
-                                        <td>{element.FieldTo}</td>
-                                        <td>{element.NrTo}</td>
-                                        <td>{element.KlTo}</td>
+                                        <td className="upper">{element.FieldTo}</td>
+                                        <td className="upper">{element.NrTo}</td>
+                                        <td className="upper">{element.KlTo}</td>
                                         <td className="comment"><p>{element.Comment}</p></td>
                                     </tr>
                                 )) : null}

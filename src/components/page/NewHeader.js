@@ -34,6 +34,10 @@ class NewHeader extends Component {
         };
     }
 
+    componentDidMount() {
+        window.scrollTo({top: 0});
+    }
+
     async submitHandler(event) {
         event.preventDefault();
         const token = await Auth.GetToken();
@@ -130,10 +134,11 @@ class NewHeader extends Component {
                     </div>
                     <form className="headerDataHead" onSubmit={this.submitHandler}>
                         <div className="headerBlock">
-                            <h5>Nummer:</h5>
+                            <h5>Förbindelse:</h5>
                             <input
                                 required
-                                placeholder="Nummer krävs"
+                                className="upper"
+                                placeholder="Förbindelse krävs"
                                 maxLength="50"
                                 type="text"
                                 name="Number"
@@ -149,6 +154,39 @@ class NewHeader extends Component {
                                 type="text"
                                 name="Name"
                                 value={this.state.Name}
+                                onChange={this.handleChange}
+                            />
+                        </div>
+                        <div className="headerBlock">
+                            <h5>Adress:</h5>
+                            <input
+                                maxLength="50"
+                                placeholder="Optionellt"
+                                type="text"
+                                name="Address"
+                                value={this.state.Address}
+                                onChange={this.handleChange}
+                            />
+                        </div>
+                        <div className="headerBlock">
+                            <h5>Funktion:</h5>
+                            <input
+                                maxLength="50"
+                                placeholder="Optionellt"
+                                type="text"
+                                name="Func"
+                                value={this.state.Func}
+                                onChange={this.handleChange}
+                            />
+                        </div>
+                        <div className="headerBlock">
+                            <h5>Dokument:</h5>
+                            <input
+                                maxLength="50"
+                                placeholder="Optionellt"
+                                type="text"
+                                name="Document"
+                                value={this.state.Document}
                                 onChange={this.handleChange}
                             />
                         </div>
@@ -175,17 +213,6 @@ class NewHeader extends Component {
                             />
                         </div>
                         <div className="headerBlock">
-                            <h5>Dokument:</h5>
-                            <input
-                                maxLength="50"
-                                placeholder="Optionellt"
-                                type="text"
-                                name="Document"
-                                value={this.state.Document}
-                                onChange={this.handleChange}
-                            />
-                        </div>
-                        <div className="headerBlock">
                             <h5>Ritning:</h5>
                             <input
                                 maxLength="50"
@@ -193,28 +220,6 @@ class NewHeader extends Component {
                                 type="text"
                                 name="Drawing"
                                 value={this.state.Drawing}
-                                onChange={this.handleChange}
-                            />
-                        </div>
-                        <div className="headerBlock">
-                            <h5>Funktion:</h5>
-                            <input
-                                maxLength="50"
-                                placeholder="Optionellt"
-                                type="text"
-                                name="Func"
-                                value={this.state.Func}
-                                onChange={this.handleChange}
-                            />
-                        </div>
-                        <div className="headerBlock">
-                            <h5>Adress:</h5>
-                            <input
-                                maxLength="50"
-                                placeholder="Optionellt"
-                                type="text"
-                                name="Address"
-                                value={this.state.Address}
                                 onChange={this.handleChange}
                             />
                         </div>

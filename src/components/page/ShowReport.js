@@ -25,6 +25,10 @@ class Showreport extends Component {
         };
     }
 
+    componentDidMount() {
+        window.scrollTo({top: 0});
+    }
+
     async getContent(url) {
         const token = await Auth.GetToken();
 
@@ -81,6 +85,7 @@ class Showreport extends Component {
                         <label htmlFor="Rack">Ställ:</label>
                         <input
                             required
+                            className="upper"
                             id="Rack"
                             type="text"
                             name="Rack"
@@ -92,6 +97,7 @@ class Showreport extends Component {
                         <input
                             required
                             id="Field"
+                            className="upper"
                             type="text"
                             name="Field"
                             placeholder="Sök fält"
@@ -101,6 +107,7 @@ class Showreport extends Component {
                         <label htmlFor="NrFrom">Från nummer:</label>
                         <input
                             id="NrFrom"
+                            className="upper"
                             type="text"
                             name="NrFrom"
                             placeholder="Från"
@@ -110,6 +117,7 @@ class Showreport extends Component {
                         <label htmlFor="NrTo">Till nummer:</label>
                         <input
                             id="NrTo"
+                            className="upper"
                             type="text"
                             name="NrTo"
                             placeholder="Till"
@@ -131,7 +139,7 @@ class Showreport extends Component {
                                 <th>Fält</th>
                                 <th>Nr</th>
                                 <th>Uttag</th>
-                                <th>Nummer</th>
+                                <th>Förbindelse</th>
                                 <th>Namn</th>
                                 <th>Adress</th>
                                 <th>Kommentar</th>
@@ -140,11 +148,11 @@ class Showreport extends Component {
                         <tbody>
                             {data.length > 0 ? data.map(element => (
                                 <tr key={key++}>
-                                    <td>{element.Rack}</td>
-                                    <td>{element.Field}</td>
-                                    <td>{element.Nr}</td>
-                                    <td>{element.Kl}</td>
-                                    <td>{element.Number}</td>
+                                    <td className="upper">{element.Rack}</td>
+                                    <td className="upper">{element.Field}</td>
+                                    <td className="upper">{element.Nr}</td>
+                                    <td className="upper">{element.Kl}</td>
+                                    <td className="upper">{element.Number}</td>
                                     <td>{element.Name}</td>
                                     <td>{element.Address}</td>
                                     <td>{element.Comment}</td>

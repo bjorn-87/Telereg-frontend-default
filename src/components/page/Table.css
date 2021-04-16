@@ -46,6 +46,11 @@
     inline-size: 150px;
     overflow-wrap: break-word;
     word-wrap: break-word;
+    margin: 0;
+}
+
+.upper {
+    text-transform: uppercase;
 }
 
 .commentInput {
@@ -58,6 +63,10 @@
 }
 
 .table.right {
+    text-align: right;
+}
+
+td.right {
     text-align: right;
 }
 
@@ -157,11 +166,11 @@
     .table td:nth-of-type(2):before { content: "Namn"; }
     .table td:nth-of-type(3):before { content: "Ställ"; }
     .table td:nth-of-type(4):before { content: "Från fält"; }
-    .table td:nth-of-type(5):before { content: "Från position"; }
+    .table td:nth-of-type(5):before { content: "Från Nr"; }
     .table td:nth-of-type(6):before { content: "Från uttag"; }
     .table td:nth-of-type(7):before { content: ""; }
     .table td:nth-of-type(8):before { content: "Till fält"; }
-    .table td:nth-of-type(9):before { content: "Till position"; }
+    .table td:nth-of-type(9):before { content: "Till Nr"; }
     .table td:nth-of-type(10):before { content: "Till uttag"; }
     .table td:nth-of-type(11):before { content: "Kommentar"; }
 
@@ -182,7 +191,7 @@
     .reportTable td:nth-of-type(2):before { content: "Fält"; }
     .reportTable td:nth-of-type(3):before { content: "Nr"; }
     .reportTable td:nth-of-type(4):before { content: "Uttag"; }
-    .reportTable td:nth-of-type(5):before { content: "Nummer"; }
+    .reportTable td:nth-of-type(5):before { content: "Förbindelse"; }
     .reportTable td:nth-of-type(6):before { content: "Namn"; }
     .reportTable td:nth-of-type(7):before { content: "Adress"; }
     .reportTable td:nth-of-type(8):before { content: "Kommentar"; }

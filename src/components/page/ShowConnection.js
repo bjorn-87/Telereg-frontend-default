@@ -27,6 +27,7 @@ class ShowConnection extends Component {
     }
 
     componentDidMount() {
+        window.scrollTo({top: 0});
         this.getContent(this.url);
     }
 
