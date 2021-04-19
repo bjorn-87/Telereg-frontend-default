@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@react-pdf/renderer": "^2.0.4",
     "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.8.3",
@@ -42,8 +43,8 @@
     ]
   },
   "devDependencies": {
-    "eslint": "^7.23.0",
-    "eslint-plugin-react": "^7.23.1",
+    "eslint": "^7.24.0",
+    "eslint-plugin-react": "^7.23.2",
     "javascript-style-guide": "^1.0.1"
   }
 }
