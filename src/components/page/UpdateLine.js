@@ -197,7 +197,7 @@ class UpdateLine extends Component {
                     </div>
                     <div className="headerDataLine">
                         <div className="headerBlock">
-                            <h5>Förbindelse:</h5><p>{this.state.head.Number}</p>
+                            <h5>Förbindelse:</h5><p className="upper">{this.state.head.Number}</p>
                         </div>
                         <div className="headerBlock">
                             <h5>Namn:</h5><p>{this.state.head.Name}</p>

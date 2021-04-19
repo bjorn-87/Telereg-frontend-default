@@ -155,7 +155,7 @@ class Showreport extends Component {
                                     <td className="upper">{element.Number}</td>
                                     <td>{element.Name}</td>
                                     <td>{element.Address}</td>
-                                    <td>{element.Comment}</td>
+                                    <td className="comment"><p>{element.Comment}</p></td>
                                 </tr>
                             )) : null}
                         </tbody>

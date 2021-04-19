@@ -93,6 +93,12 @@ const styles = StyleSheet.create({
         padding: 3,
         flexWrap: 'wrap',
     },
+    columnsToUpper: {
+        width: 30,
+        padding: 3,
+        flexWrap: 'wrap',
+        textTransform: 'uppercase',
+    },
     comment: {
         padding: 3,
         width: 100,
@@ -102,6 +108,15 @@ const styles = StyleSheet.create({
         padding: 3,
         width: 50,
         flexWrap: 'wrap',
+    },
+    outputToUpper: {
+        padding: 3,
+        width: 50,
+        flexWrap: 'wrap',
+        textTransform: 'uppercase',
+    },
+    upper: {
+        textTransform: 'uppercase',
     }
 });
 
@@ -114,13 +129,15 @@ const ToPdf = (props) => {
                         <View style={styles.pageHeader}>
                             <Text style={styles.headerTitle}>LKAB Teleregister</Text>
                             <Text style={styles.headerTitle}>
-                                Förbindelsetabell för: {props.data.head.Number}
+                                Förbindelsetabell för: <Text style={styles.upper}>
+                                    {props.data.head.Number}
+                                </Text>
                             </Text>
                         </View>
                         <View style={styles.header}>
                             <View style={styles.headerPairs}>
                                 <Text>Förbindelse:</Text>
-                                <Text>{props.data.head.Number}</Text>
+                                <Text style={styles.upper}>{props.data.head.Number}</Text>
                             </View>
                             <View style={styles.headerPairs}>
                                 <Text>Namn:</Text>
@@ -204,14 +221,14 @@ const ToPdf = (props) => {
                                 <View style={styles.lines} key={element.Id} wrap={false}>
                                     <Text style={styles.columns}>{element.Position}</Text>
                                     <Text style={styles.comment}>{element.Note}</Text>
-                                    <Text style={styles.columns}>{element.Rack}</Text>
-                                    <Text style={styles.columns}>{element.FieldFrom}</Text>
-                                    <Text style={styles.columns}>{element.NrFrom}</Text>
-                                    <Text style={styles.output}>{element.KlFrom}</Text>
+                                    <Text style={styles.columnsToUpper}>{element.Rack}</Text>
+                                    <Text style={styles.columnsToUpper}>{element.FieldFrom}</Text>
+                                    <Text style={styles.columnsToUpper}>{element.NrFrom}</Text>
+                                    <Text style={styles.outputToUpper}>{element.KlFrom}</Text>
                                     <Text style={styles.columns}>-</Text>
-                                    <Text style={styles.columns}>{element.FieldTo}</Text>
-                                    <Text style={styles.columns}>{element.NrTo}</Text>
-                                    <Text style={styles.output}>{element.KlTo}</Text>
+                                    <Text style={styles.columnsToUpper}>{element.FieldTo}</Text>
+                                    <Text style={styles.columnsToUpper}>{element.NrTo}</Text>
+                                    <Text style={styles.outputToUpper}>{element.KlTo}</Text>
                                     <Text style={styles.comment}>{element.Comment}</Text>
                                 </View>
                             )) : null}

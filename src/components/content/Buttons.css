@@ -85,6 +85,11 @@
     margin-top: 1rem;
 }
 
+.blue-button:hover,
+.red-button:hover {
+    text-decoration: underline;
+}
+
 
 @media only screen and (max-width: 1000px) {
     .editButton,

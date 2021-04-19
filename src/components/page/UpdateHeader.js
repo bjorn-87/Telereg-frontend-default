@@ -177,6 +177,7 @@ class UpdateHeader extends Component {
                                 maxLength="50"
                                 type="text"
                                 name="Number"
+                                className="upper"
                                 value={this.state.Number}
                                 onChange={this.handleChange}
                             />

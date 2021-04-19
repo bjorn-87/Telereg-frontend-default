@@ -22,7 +22,7 @@ class CreatePdf extends Component {
         } = this.state;
 
         if (!data) {
-            return <Redirect to={`/`}/>;
+            return <Redirect to={`/connection/${Id}`}/>;
         } else {
             return (
                 <main>
@@ -39,7 +39,7 @@ class CreatePdf extends Component {
                             fileName="Forbindelsetabell.pdf"
                             className="createButton blue-button noHeaderButton"
                         >{({loading}) =>
-                                loading ? 'Laddar dokument...' : 'Generera PDF'}
+                                loading ? 'Laddar dokument...' : 'Ladda ned PDF'}
                         </PDFDownloadLink>
                     </div>
                 </main>
