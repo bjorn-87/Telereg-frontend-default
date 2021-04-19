@@ -20,7 +20,9 @@ const styles = StyleSheet.create({
     },
     header: {
         fontSize: 10,
-        margin: 10,
+        marginTop: 10,
+        marginLeft: 10,
+        marginRight: 10,
         padding: 5,
         flexGrow: 1,
         flexDirection: 'row',
@@ -55,10 +57,29 @@ const styles = StyleSheet.create({
     },
     lineBox: {
         fontSize: 10,
-        margin: 10,
+        marginLeft: 10,
+        marginRight: 10,
         padding: 5,
         flexGrow: 1,
-        border: 1,
+        borderLeft: 1,
+        borderRight: 1,
+    },
+    footer: {
+        fontSize: 10,
+        marginLeft: 10,
+        marginRight: 10,
+        marginBottom: 10,
+        padding: 10,
+        flexGrow: 1,
+        borderTop: 1,
+    },
+    between: {
+        fontSize: 10,
+        marginLeft: 10,
+        marginRight: 10,
+        padding: 10,
+        flexGrow: 1,
+        borderBottom: 1,
     },
     headerPairs: {
         fontSize: 10,
@@ -88,9 +109,10 @@ const ToPdf = (props) => {
     if (props.data) {
         return (
             <Document>
-                <Page size="A4" style={styles.page}>
+                <Page size="A4" style={styles.page} wrap>
                     <View style={styles.section}>
                         <View style={styles.pageHeader}>
+                            <Text style={styles.headerTitle}>LKAB Teleregister</Text>
                             <Text style={styles.headerTitle}>
                                 Förbindelsetabell för: {props.data.head.Number}
                             </Text>
@@ -163,8 +185,9 @@ const ToPdf = (props) => {
                                 <Text>{props.data.head.Other}</Text>
                             </View>
                         </View>
+                        <View style={styles.between} fixed></View>
                         <View style={styles.lineBox}>
-                            <View style={styles.linesHead}>
+                            <View style={styles.linesHead} fixed>
                                 <Text style={styles.columns}>Rad</Text>
                                 <Text style={styles.comment}>Notering</Text>
                                 <Text style={styles.columns}>Ställ</Text>
@@ -178,7 +201,7 @@ const ToPdf = (props) => {
                                 <Text style={styles.comment}>Kommentar</Text>
                             </View>
                             {props.data.line.length > 0 ? props.data.line.map(element => (
-                                <View style={styles.lines} key={element.Id}>
+                                <View style={styles.lines} key={element.Id} wrap={false}>
                                     <Text style={styles.columns}>{element.Position}</Text>
                                     <Text style={styles.comment}>{element.Note}</Text>
                                     <Text style={styles.columns}>{element.Rack}</Text>
@@ -193,6 +216,7 @@ const ToPdf = (props) => {
                                 </View>
                             )) : null}
                         </View>
+                        <View style={styles.footer} fixed></View>
                     </View>
                 </Page>
             </Document>

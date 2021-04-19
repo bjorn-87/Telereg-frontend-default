@@ -64,7 +64,7 @@ class NewLine extends Component {
                     </div>
                     <div className="confirmationBox noHeader">
                         <button
-                            className="createButton blue-button"
+                            className="createButton blue-button noHeaderButton"
                             onClick={this.submitHandler}
                         >Skapa kopplingspunkt
                         </button>

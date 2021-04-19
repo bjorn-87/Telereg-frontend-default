@@ -1,8 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import DateFormatter from '../content/DateFormatter';
-import {PDFDownloadLink} from '@react-pdf/renderer';
-import ToPdf from './ToPdf';
 import '../page/ShowConnection.css';
 import '../page/Table.css';
 
@@ -23,13 +21,12 @@ const ShowConnectionTable = (props) => {
                         to={`/update/line/${encodeURIComponent(props.data.head.Id)}`}
                         className="blue-button"
                     >Redigera Linje</Link>
-                    <PDFDownloadLink
-                        document={<ToPdf data={props.data} />}
-                        fileName="Forbindelsetabell.pdf"
-                        className="blue-button"
-                    >{({loading}) =>
-                            loading ? 'Laddar dokument...' : 'Generera PDF'}
-                    </PDFDownloadLink>
+                    <Link to={
+                        {
+                            pathname: `/downloadpdf/${encodeURIComponent(props.data.head.Id)}`,
+                            data: props.data
+                        }
+                    } className="blue-button">Generera PDF</Link>
                     <Link
                         to={`/delete/connection/${encodeURIComponent(props.data.head.Id)}`}
                         className="red-button"

@@ -15,6 +15,7 @@ import DeleteLine from './components/page/DeleteLine.js';
 import DeleteConnection from './components/page/DeleteConnection.js';
 import ShowReport from './components/page/ShowReport.js';
 import ScrollArrow from './components/content/ScrollArrow.js';
+import CreatePdf from './components/page/CreatePdf';
 import './App.css';
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
                     <Route path="/delete/line/:id/:back" component={DeleteLine} />
                     <Route path="/delete/connection/:id/" component={DeleteConnection} />
                     <Route path="/report/" component={ShowReport} />
+                    <Route path="/downloadpdf/:id" component={CreatePdf} />
                     <ScrollArrow/>
                 </div>
                 <div className="footerBorder"></div>
