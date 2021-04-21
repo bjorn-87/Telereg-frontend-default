@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     },
     pageHeader: {
         margin: 10,
-        padding: 5,
+        padding: 10,
         border: 1,
         backgroundColor: '#E4E4E4'
     },
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
         marginTop: 10,
         marginLeft: 10,
         marginRight: 10,
-        padding: 5,
+        padding: 10,
         flexGrow: 1,
         flexDirection: 'row',
         flexWrap: 'wrap',
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
         padding: 2,
         flexGrow: 1,
         flexDirection: 'row',
-        flexWrap: 'wrap',
+        // flexWrap: 'wrap',
     },
     linesHead: {
         fontSize: 10,
@@ -43,8 +43,8 @@ const styles = StyleSheet.create({
         padding: 2,
         flexGrow: 1,
         flexDirection: 'row',
-        flexWrap: 'wrap',
-        border: 1,
+        // flexWrap: 'wrap',
+        // border: 1,
         backgroundColor: '#E4E4E4'
     },
     headerTitle: {
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
         fontSize: 10,
         marginLeft: 10,
         marginRight: 10,
-        padding: 5,
+        // padding: 5,
         flexGrow: 1,
         borderLeft: 1,
         borderRight: 1,
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
         marginLeft: 10,
         marginRight: 10,
         marginBottom: 10,
-        padding: 10,
+        padding: 5,
         flexGrow: 1,
         borderTop: 1,
     },
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
         fontSize: 10,
         marginLeft: 10,
         marginRight: 10,
-        padding: 10,
+        padding: 5,
         flexGrow: 1,
         borderBottom: 1,
     },
@@ -89,12 +89,17 @@ const styles = StyleSheet.create({
         width: 200,
     },
     columns: {
-        width: 30,
+        width: 50,
+        padding: 3,
+        flexWrap: 'wrap',
+    },
+    numberColumns: {
+        width: 25,
         padding: 3,
         flexWrap: 'wrap',
     },
     columnsToUpper: {
-        width: 30,
+        width: 50,
         padding: 3,
         flexWrap: 'wrap',
         textTransform: 'uppercase',
@@ -205,27 +210,27 @@ const ToPdf = (props) => {
                         <View style={styles.between} fixed></View>
                         <View style={styles.lineBox}>
                             <View style={styles.linesHead} fixed>
-                                <Text style={styles.columns}>Rad</Text>
+                                <Text style={styles.numberColumns}>Rad</Text>
                                 <Text style={styles.comment}>Notering</Text>
                                 <Text style={styles.columns}>Ställ</Text>
                                 <Text style={styles.columns}>Fält</Text>
                                 <Text style={styles.columns}>Nr</Text>
                                 <Text style={styles.output}>Uttag</Text>
-                                <Text style={styles.columns}></Text>
+                                <Text style={styles.numberColumns}></Text>
                                 <Text style={styles.columns}>Fält</Text>
                                 <Text style={styles.columns}>Nr</Text>
                                 <Text style={styles.output}>Uttag</Text>
                                 <Text style={styles.comment}>Kommentar</Text>
                             </View>
                             {props.data.line.length > 0 ? props.data.line.map(element => (
-                                <View style={styles.lines} key={element.Id} wrap={false}>
-                                    <Text style={styles.columns}>{element.Position}</Text>
+                                <View style={styles.lines} key={element.Id} >
+                                    <Text style={styles.numberColumns}>{element.Position}</Text>
                                     <Text style={styles.comment}>{element.Note}</Text>
                                     <Text style={styles.columnsToUpper}>{element.Rack}</Text>
                                     <Text style={styles.columnsToUpper}>{element.FieldFrom}</Text>
                                     <Text style={styles.columnsToUpper}>{element.NrFrom}</Text>
                                     <Text style={styles.outputToUpper}>{element.KlFrom}</Text>
-                                    <Text style={styles.columns}>-</Text>
+                                    <Text style={styles.numberColumns}>-</Text>
                                     <Text style={styles.columnsToUpper}>{element.FieldTo}</Text>
                                     <Text style={styles.columnsToUpper}>{element.NrTo}</Text>
                                     <Text style={styles.outputToUpper}>{element.KlTo}</Text>

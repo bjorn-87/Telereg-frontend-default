@@ -13,6 +13,12 @@ const ShowConnectionTable = (props) => {
                         to="/"
                         className="blue-button"
                     >Tillbaka</Link>
+                    <Link to={
+                        {
+                            pathname: `/downloadpdf/${encodeURIComponent(props.data.head.Id)}`,
+                            data: props.data
+                        }
+                    } className="blue-button">Skapa PDF</Link>
                     <Link
                         to={`/update/head/${encodeURIComponent(props.data.head.Id)}`}
                         className="blue-button"
@@ -21,12 +27,6 @@ const ShowConnectionTable = (props) => {
                         to={`/update/line/${encodeURIComponent(props.data.head.Id)}`}
                         className="blue-button"
                     >Redigera Linje</Link>
-                    <Link to={
-                        {
-                            pathname: `/downloadpdf/${encodeURIComponent(props.data.head.Id)}`,
-                            data: props.data
-                        }
-                    } className="blue-button">Skapa PDF</Link>
                     <Link
                         to={`/delete/connection/${encodeURIComponent(props.data.head.Id)}`}
                         className="red-button"
