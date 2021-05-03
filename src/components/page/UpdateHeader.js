@@ -169,7 +169,11 @@ class UpdateHeader extends Component {
                         </Link>
                     </div>
                     {error ? <h2>{error}</h2> : null}
-                    <form className="headerDataHead" onSubmit={this.submitHandler}>
+                    <form
+                        autoComplete="off"
+                        className="headerDataHead"
+                        onSubmit={this.submitHandler}
+                    >
                         <div className="headerBlock">
                             <h5>Förbindelse:</h5>
                             <input

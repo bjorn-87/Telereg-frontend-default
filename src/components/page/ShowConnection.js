@@ -17,7 +17,7 @@ class ShowConnection extends Component {
 
         this.state = {
             data: {
-                head: [],
+                head: {},
                 line: []
             },
             error: "",
@@ -73,7 +73,7 @@ class ShowConnection extends Component {
                     <h3 className="loading">Läser in data...</h3>
                 </main>
             );
-        } else if (data.head.length === 0) {
+        } else if (Object.keys(data.head).length === 0) {
             return (
                 <main className="mainPage">
                     <div className="notFound"><h1>404 Page not found</h1></div>

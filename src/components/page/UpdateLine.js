@@ -153,6 +153,7 @@ class UpdateLine extends Component {
                     className="commentInput"
                     value={element}
                     onChange={this.handleChange(idx)}
+                    autoComplete="off"
                 />
             </div>
         );
@@ -168,6 +169,7 @@ class UpdateLine extends Component {
                     name={name}
                     value={element}
                     onChange={this.handleChange(idx)}
+                    autoComplete="off"
                 />
             </div>
         );

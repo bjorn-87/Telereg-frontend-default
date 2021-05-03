@@ -190,7 +190,7 @@ class Telereg extends Component {
                 <main className="mainPage">
                     <div className="startPage">
                         <div className="searchBox">
-                            <form onSubmit={this.submitHandler}>
+                            <form autoComplete="off" onSubmit={this.submitHandler}>
                                 <select name="selectValue" value={this.state.selectValue}
                                     onChange={this.changeHandler}
                                     className="searchSelect"

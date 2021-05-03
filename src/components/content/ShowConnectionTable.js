@@ -15,7 +15,7 @@ const ShowConnectionTable = (props) => {
                     >Tillbaka</Link>
                     <Link to={
                         {
-                            pathname: `/downloadpdf/${encodeURIComponent(props.data.head.Id)}`,
+                            pathname: `/connectionpdf/${encodeURIComponent(props.data.head.Id)}`,
                             data: props.data
                         }
                     } className="blue-button">Skapa PDF</Link>

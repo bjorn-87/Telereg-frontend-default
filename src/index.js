@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import { AzureAD } from 'react-aad-msal';
+import { AzureAD, AuthenticationState } from 'react-aad-msal';
 import App from './App';
 import { authProvider } from './authProvider';
 import reportWebVitals from './reportWebVitals';
@@ -9,7 +9,28 @@ import reportWebVitals from './reportWebVitals';
 ReactDOM.render(
     <React.StrictMode>
         <AzureAD provider={authProvider} forceLogin={true}>
-            <App />
+            {
+                ({authenticationState, error}) => {
+                    switch (authenticationState) {
+                        case AuthenticationState.Authenticated:
+                            return (
+                                <App />
+                            );
+                        case AuthenticationState.Unauthenticated:
+                            return (
+                                <div>
+                                    {error && <p>
+                                        <span className="spanStyle">
+                                            Behörighet saknas för denna applikation.
+                                        </span>
+                                    </p>}
+                                </div>
+                            );
+                        case AuthenticationState.InProgress:
+                            return (<p>Autentiserar...</p>);
+                    }
+                }
+            }
         </AzureAD>
     </React.StrictMode>,
     document.getElementById('root')

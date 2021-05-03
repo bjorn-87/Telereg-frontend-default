@@ -132,7 +132,11 @@ class NewHeader extends Component {
                     <div className="backButton">
                         <Link to="/" className="blue-button">Tillbaka</Link>
                     </div>
-                    <form className="headerDataHead" onSubmit={this.submitHandler}>
+                    <form
+                        autoComplete="off"
+                        className="headerDataHead"
+                        onSubmit={this.submitHandler}
+                    >
                         <div className="headerBlock">
                             <h5>Förbindelse:</h5>
                             <input

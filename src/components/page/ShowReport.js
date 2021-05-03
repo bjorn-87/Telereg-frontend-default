@@ -76,12 +76,21 @@ class Showreport extends Component {
 
         return (
             <main className="mainPage">
-                <div className="backButton">
+                <div className="connectionNavBar">
                     <Link className="blue-button" to="/">Tillbaka</Link>
+                    {isloaded && data.length > 0 ?
+                        <Link to={
+                            {
+                                pathname: `/reportpdf`,
+                                data: data
+                            }
+                        } className="blue-button">Skapa PDF</Link>
+                        : null
+                    }
                 </div>
                 <div className="reportContainer">
                     <h4>Nätbeläggningsrapport</h4>
-                    <form className="reportForm" onSubmit={this.submitHandler}>
+                    <form autoComplete="off" className="reportForm" onSubmit={this.submitHandler}>
                         <label htmlFor="Rack">Ställ:</label>
                         <input
                             required
