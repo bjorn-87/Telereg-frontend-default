@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Redirect, Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import config from '../../config';
 import Auth from '../auth/Auth';
@@ -18,8 +18,11 @@ class NewLine extends Component {
         };
     }
 
-    async submitHandler(event) {
-        event.preventDefault();
+    componentDidMount() {
+        this.submitHandler();
+    }
+
+    async submitHandler() {
         const token = await Auth.GetToken();
 
         let payload = {
@@ -54,21 +57,8 @@ class NewLine extends Component {
             return <Redirect to={`/update/line/${Id}`}/>;
         } else {
             return (
-                <main>
-                    <div className="backButton">
-                        <Link
-                            to={`/update/line/${Id}`}
-                            className="blue-button"
-                        >Tillbaka
-                        </Link>
-                    </div>
-                    <div className="confirmationBox noHeader">
-                        <button
-                            className="createButton blue-button noHeaderButton"
-                            onClick={this.submitHandler}
-                        >Skapa kopplingspunkt
-                        </button>
-                    </div>
+                <main className="mainPage">
+                    <h3 className="loading">Läser in data...</h3>
                 </main>
             );
         }
