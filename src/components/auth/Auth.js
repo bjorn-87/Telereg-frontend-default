@@ -1,6 +1,6 @@
-import {authProvider} from '../../authProvider';
-
 "use strict";
+
+import {authProvider} from '../../authProvider';
 
 var Auth = {
     GetToken: async function() {

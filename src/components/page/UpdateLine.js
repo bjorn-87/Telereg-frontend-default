@@ -70,8 +70,8 @@ class UpdateLine extends Component {
         event.preventDefault();
 
         const target = event.target;
-        const value = target.value;
-        const found = await this.state.line.find(element => element.Id == value);
+        const value = parseInt(target.value);
+        const found = await this.state.line.find(element => element.Id === value);
         const token = await Auth.GetToken();
 
         let url = `${this.url}lines`;
