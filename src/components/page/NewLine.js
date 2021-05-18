@@ -11,15 +11,16 @@ class NewLine extends Component {
 
         this.url = `${config.baseUrl}lines`;
         this.submitHandler = this.submitHandler.bind(this);
-
         this.state = {
-            Id: props.match.params.id,
+            Id: props.location.data,
             redirect: false
         };
     }
 
     componentDidMount() {
-        this.submitHandler();
+        if (this.state.Id) {
+            this.submitHandler();
+        }
     }
 
     async submitHandler() {
@@ -53,7 +54,9 @@ class NewLine extends Component {
             Id,
         } = this.state;
 
-        if (redirect) {
+        if (!Id) {
+            return <Redirect to={"/"}/>;
+        } else if (redirect) {
             return <Redirect to={`/update/line/${Id}`}/>;
         } else {
             return (
@@ -66,7 +69,7 @@ class NewLine extends Component {
 }
 
 NewLine.propTypes = {
-    match: PropTypes.object.isRequired
+    location: PropTypes.object.isRequired
 };
 
 export default NewLine;

@@ -191,11 +191,12 @@ class UpdateLine extends Component {
                             className="blue-button"
                         >Tillbaka
                         </Link>
-                        <Link
-                            to={`/new/line/${encodeURIComponent(this.id)}`}
-                            className="blue-button"
-                        >Ny Kopplingspunkt
-                        </Link>
+                        <Link to={
+                            {
+                                pathname: `/new/line/`,
+                                data: this.id
+                            }
+                        } className="blue-button">Ny Kopplingspunkt</Link>
                     </div>
                     <div className="headerDataLine">
                         <div className="headerBlock">

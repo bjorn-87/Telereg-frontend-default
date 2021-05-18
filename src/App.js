@@ -38,7 +38,7 @@ function App() {
                     <Route path="/update/head/:id" component={UpdateHead} />
                     <Route path="/update/line/:id" component={UpdateLine} />
                     <Route path="/new/head" component={NewHeader} />
-                    <Route path="/new/line/:id" component={NewLine} />
+                    <Route path="/new/line" component={NewLine} />
                     <Route path="/delete/line/:id/:back" component={DeleteLine} />
                     <Route path="/delete/connection/:id/" component={DeleteConnection} />
                     <Route path="/report/" component={ShowReport} />
