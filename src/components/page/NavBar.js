@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import Logo from '../../LKAB-toplogo.png';
+import Logo from '../../Toplogo.png';
 import Auth from '../auth/Auth';
 import AddCircle from '../../icons/1x/baseline_add_circle_24dp.png';
 import Desc from '../../icons/1x/baseline_description_white_24dp.png';
@@ -17,7 +17,7 @@ const NavBar = () => {
                 <Link to="/">
                     <span className="logoText">
                         <img className="App-logo" src={Logo} alt="logo" />
-                        <p>| Teleregistret</p>
+                        <p>Teleregistret</p>
                     </span>
                 </Link>
                 <ul>

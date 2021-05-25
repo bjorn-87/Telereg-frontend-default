@@ -48,7 +48,7 @@ function App() {
                 </div>
                 <div className="footerBorder"></div>
                 <footer className="pageFooter">
-                    <p>&copy; LKAB | 2021 </p>
+                    <p>&copy; Björn Olsson | 2021 </p>
                 </footer>
             </div>
         </Router>
