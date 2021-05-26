@@ -90,10 +90,10 @@ class NewHeader extends Component {
 
                     switch (res.errors.status) {
                         case 409:
-                            err = "Numret är upptaget";
+                            err = "Förbindelsen är upptagen";
                             break;
                         case 400:
-                            err = "Numret saknas";
+                            err = "Förbindelsen saknas";
                             break;
                         default:
                             err = "Något gick fel";

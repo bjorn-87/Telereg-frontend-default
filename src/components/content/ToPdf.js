@@ -128,7 +128,7 @@ const ToPdf = (props) => {
                 <Page size="A4" style={styles.page} wrap>
                     <View style={styles.section}>
                         <View style={styles.pageHeader}>
-                            <Text style={styles.headerTitle}>LKAB Teleregister</Text>
+                            <Text style={styles.headerTitle}>Teleregistret</Text>
                             <Text style={styles.headerTitle}>
                                 Förbindelsetabell för: <Text style={styles.upper}>
                                     {props.data.head.Number}

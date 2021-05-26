@@ -1,12 +1,25 @@
-# Getting Started with Create React App
+# Teleregister
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## External Dependencies  
+[msal](https://www.npmjs.com/package/msal)  
+[react-aad-msal](https://www.npmjs.com/package/react-aad-msal)  
+[react-paginate](https://www.npmjs.com/package/react-paginate)  
+[@react-pdf/renderer](https://react-pdf.org/)
+Icons from material icons (google fonts opensource) [https://fonts.google.com/icons](https://fonts.google.com/icons)  
 
 ## Installation
 1. Clone repo
 2. Navigate to folder containing repo and run commando `npm install`
 3. Edit file `src/template_authProvider.js` and rename it to `authprovider.js`
 4. Edit file `src/template_config.js` and rename it to `config.js`
+
+
+Images for app-logo and favicon is found in the `public` folder  
+
+The logo in the navbar is found under `src/Toplogo.png` and style for it is found in `src/components/page/NavBar.css` under the classname `.App-logo`  
+
 
 ## Available Scripts
 
@@ -82,9 +95,3 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-
-## External Dependencies  
-[msal](https://www.npmjs.com/package/msal)  
-[react-aad-msal](https://www.npmjs.com/package/react-aad-msal)  
-[react-paginate](https://www.npmjs.com/package/react-paginate)  
-Icons from material icons (google fonts opensource) [https://fonts.google.com/icons](https://fonts.google.com/icons)  

@@ -113,7 +113,7 @@ const ToPdf = (props) => {
                 <Page size="A4" style={styles.page} wrap>
                     <View style={styles.section}>
                         <View style={styles.pageHeader}>
-                            <Text style={styles.headerTitle}>LKAB Teleregister</Text>
+                            <Text style={styles.headerTitle}>Teleregistret</Text>
                             <Text style={styles.headerTitle}>Nätbeläggningsrapport</Text>
                         </View>
                         <View style={styles.between} fixed></View>
